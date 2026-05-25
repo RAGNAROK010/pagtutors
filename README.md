@@ -1,2 +1,2 @@
 # pagtutors
-Official website for PAG Tutors ICAN tutorialhouse.
+Official website for PAG Tutors ICAN Tutorial Center.

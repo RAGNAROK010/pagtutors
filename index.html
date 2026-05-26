@@ -70,13 +70,13 @@
             const proSection = document.getElementById("form-block-professional");
 
             if(targetType === 'atswa') {
-                atswaBtn.className = "flex-1 bg-amber-500 text-blue-950 text-center py-4 rounded-xl font-black text-sm transition shadow shadow-amber-500/20";
-                proBtn.className = "flex-1 bg-slate-800 text-slate-400 text-center py-4 rounded-xl font-bold text-sm hover:text-white transition";
+                atswaBtn.className = "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm transition shadow-lg shadow-amber-500/20";
+                proBtn.className = "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm hover:text-white hover:bg-white/15 transition";
                 atswaSection.classList.remove("hidden");
                 proSection.classList.add("hidden");
             } else {
-                proBtn.className = "flex-1 bg-blue-700 text-white text-center py-4 rounded-xl font-black text-sm transition shadow shadow-blue-700/20";
-                atswaBtn.className = "flex-1 bg-slate-800 text-slate-400 text-center py-4 rounded-xl font-bold text-sm hover:text-white transition";
+                proBtn.className = "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm transition shadow-lg shadow-amber-500/20";
+                atswaBtn.className = "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm hover:text-white hover:bg-white/15 transition";
                 proSection.classList.remove("hidden");
                 atswaSection.classList.add("hidden");
             }
@@ -337,66 +337,68 @@
         </section>
     </div>
 
-    <section id="enroll" class="py-20 bg-slate-900 border-t-4 border-amber-500">
-        <div class="container mx-auto px-4 max-w-4xl">
+    <section id="enroll" class="py-20 bg-gradient-to-br from-indigo-950 via-slate-900 to-blue-950 border-t-4 border-amber-500 relative">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.08),transparent_50%)] pointer-events-none"></div>
+        
+        <div class="container mx-auto px-4 max-w-4xl relative z-10">
             
             <div class="text-center max-w-2xl mx-auto mb-12 text-white">
-                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full">PAC REGISTRATION SYSTEM</span>
-                <h2 class="text-3xl font-black mt-3">Interactive Admissions Desk</h2>
-                <p class="text-slate-400 mt-2 text-sm">Please select your registration layer below to view the exact structural input form for your program.</p>
+                <span class="text-xs font-extrabold text-amber-400 uppercase tracking-widest bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/20">PAG REGISTRATION SYSTEM</span>
+                <h2 class="text-3xl lg:text-4xl font-black mt-4 tracking-tight">Interactive Admissions Desk</h2>
+                <p class="text-slate-400 mt-2 text-sm">Select your program tier down below to launch your dedicated interactive enrollment workspace dashboard.</p>
             </div>
 
-            <div class="flex bg-slate-950 p-2 rounded-2xl border border-slate-800 space-x-2 mb-10 max-w-xl mx-auto">
-                <button type="button" id="tab-btn-atswa" onclick="setActiveFormTab('atswa')" class="flex-1 bg-amber-500 text-blue-950 text-center py-4 rounded-xl font-black text-sm transition shadow shadow-amber-500/20">
-                    <i class="fa-solid fa-graduation-cap mr-2"></i> ATSWA Registration Form
+            <div class="flex bg-white/5 backdrop-blur-md p-2 rounded-2xl border border-white/10 space-x-2 mb-10 max-w-xl mx-auto shadow-2xl">
+                <button type="button" id="tab-btn-atswa" onclick="setActiveFormTab('atswa')" class="flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm transition shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-graduation-cap mr-2 text-base"></i> ATSWA Portal
                 </button>
-                <button type="button" id="tab-btn-professional" onclick="setActiveFormTab('professional')" class="flex-1 bg-slate-800 text-slate-400 text-center py-4 rounded-xl font-bold text-sm hover:text-white transition">
-                    <i class="fa-solid fa-user-tie mr-2"></i> Professional Stage Form
+                <button type="button" id="tab-btn-professional" onclick="setActiveFormTab('professional')" class="flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm hover:text-white hover:bg-white/15 transition">
+                    <i class="fa-solid fa-user-tie mr-2 text-base"></i> Professional Stage
                 </button>
             </div>
 
-            <div id="form-block-atswa" class="bg-gradient-to-b from-blue-950 via-slate-900 to-blue-950 rounded-3xl p-6 lg:p-10 shadow-2xl border border-blue-800 text-slate-100">
-                <div class="text-center border-b border-dashed border-blue-800 pb-6 mb-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div id="form-block-atswa" class="bg-white/[0.03] backdrop-blur-xl rounded-3xl p-6 lg:p-10 shadow-2xl border border-white/10 text-slate-100 transition duration-500">
+                <div class="text-center border-b border-white/10 pb-6 mb-8 flex flex-col sm:flex-row justify-between items-center gap-6">
                     <div class="text-center sm:text-left">
-                        <h3 class="text-sm font-extrabold text-blue-300 tracking-wide uppercase">Institute of Chartered Accountants of Nigeria</h3>
-                        <h4 class="text-2xl font-black text-amber-500 uppercase tracking-normal">PAC TUTORS</h4>
-                        <span class="inline-block bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-black tracking-wider px-3 py-1 rounded-md mt-2 uppercase">ATSWA Student Registration Form</span>
+                        <h3 class="text-xs font-black text-amber-400 tracking-widest uppercase">Institute of Chartered Accountants of Nigeria</h3>
+                        <h4 class="text-3xl font-black text-white uppercase tracking-normal mt-0.5">PAG TUTORS</h4>
+                        <span class="inline-block bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-wider px-3 py-1 rounded-md mt-2 uppercase">ATSWA Student Registration Form</span>
                     </div>
                     
-                    <label class="relative border-2 border-dashed border-blue-700 w-28 h-28 rounded-xl flex flex-col items-center justify-center text-center p-2 bg-slate-950/60 cursor-pointer hover:bg-slate-950 transition shrink-0 group" id="atswa-passport-preview">
-                        <i class="fa-solid fa-camera text-blue-400 group-hover:text-amber-500 transition text-base"></i>
-                        <span class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mt-1">Upload Passport Photograph</span>
+                    <label class="relative border-2 border-dashed border-white/20 w-28 h-28 rounded-2xl flex flex-col items-center justify-center text-center p-2 bg-black/40 cursor-pointer hover:border-amber-400 transition shrink-0 group shadow-inner" id="atswa-passport-preview">
+                        <i class="fa-solid fa-camera text-slate-400 group-hover:text-amber-400 transition text-lg"></i>
+                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-1.5 group-hover:text-slate-200">Upload Passport</span>
                         <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImageFile(this, 'atswa-passport-preview')">
                     </label>
                 </div>
 
                 <form onsubmit="sendRegistrationSheet(event, 'form-block-atswa', 'ATSWA STUDENT REGISTRATION')">
                     <div class="space-y-6">
-                        <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest border-l-4 border-amber-500 pl-2">Blank Fields (To be Filled)</h5>
+                        <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest border-l-4 border-amber-500 pl-2">Personal Data Details</h5>
                         
                         <div class="grid sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Name (Surname)</label>
-                                <input type="text" required class="student_surname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="SURNAME">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Surname</label>
+                                <input type="text" required class="student_surname w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="SURNAME">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">First Name</label>
-                                <input type="text" required class="student_firstname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="FIRST NAME">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">First Name</label>
+                                <input type="text" required class="student_firstname w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="FIRST NAME">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Middle Name</label>
-                                <input type="text" required class="student_midname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="MIDDLE NAME">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Middle Name</label>
+                                <input type="text" required class="student_midname w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="MIDDLE NAME">
                             </div>
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Date of Birth</label>
-                                <input type="date" required class="student_dob w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-slate-300">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Date of Birth</label>
+                                <input type="date" required class="student_dob w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-slate-300 transition">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Marital Status</label>
-                                <select required class="student_marital w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-slate-300">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Marital Status</label>
+                                <select required class="student_marital w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-slate-300 transition">
                                     <option value="" disabled selected class="text-slate-600">-- Select Status --</option>
                                     <option value="Single" class="bg-slate-900 text-white">Single</option>
                                     <option value="Married" class="bg-slate-900 text-white">Married</option>
@@ -406,137 +408,139 @@
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Telephone No</label>
-                                <input type="tel" required class="student_phone w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. 08012345678">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Telephone No</label>
+                                <input type="tel" required class="student_phone w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="e.g. 08012345678">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Email Address</label>
-                                <input type="email" required class="student_email w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="name@example.com">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Email Address</label>
+                                <input type="email" required class="student_email w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="name@example.com">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Residential Address</label>
-                            <input type="text" required class="student_address w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Full Home Address Details">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Residential Address</label>
+                            <input type="text" required class="student_address w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="Full Home Address Details">
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">State of Origin</label>
-                                <input type="text" required class="student_state w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="State name">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">State of Origin</label>
+                                <input type="text" required class="student_state w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="State name">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Local Govt. of Origin</label>
-                                <input type="text" required class="student_lga w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="L.G.A area">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Local Govt. of Origin</label>
+                                <input type="text" required class="student_lga w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="L.G.A area">
                             </div>
                         </div>
 
-                        <div class="p-4 bg-slate-950/40 border border-blue-900 rounded-2xl grid sm:grid-cols-2 gap-4">
+                        <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest border-l-4 border-amber-500 pl-2 pt-2">Academic Histories</h5>
+                        
+                        <div class="p-5 bg-white/[0.02] border border-white/5 rounded-2xl grid sm:grid-cols-2 gap-4 shadow-inner">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Primary School</label>
-                                <input type="text" required class="student_primary w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="Primary School Name">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Primary School</label>
+                                <input type="text" required class="student_primary w-full border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:border-amber-500 focus:outline-none bg-black/20 text-white font-medium placeholder-slate-700" placeholder="Primary School Name">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Year of Grad</label>
-                                <input type="number" min="1950" max="2030" required class="student_primary_grad w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="YYYY">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Year of Graduation</label>
+                                <input type="number" min="1950" max="2030" required class="student_primary_grad w-full border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:border-amber-500 focus:outline-none bg-black/20 text-white font-medium placeholder-slate-700" placeholder="YYYY">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Secondary School</label>
-                                <input type="text" required class="student_secondary w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="Secondary School Name">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Secondary School</label>
+                                <input type="text" required class="student_secondary w-full border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:border-amber-500 focus:outline-none bg-black/20 text-white font-medium placeholder-slate-700" placeholder="Secondary School Name">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Year of Grad</label>
-                                <input type="number" min="1950" max="2030" required class="student_secondary_grad w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="YYYY">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Year of Graduation</label>
+                                <input type="number" min="1950" max="2030" required class="student_secondary_grad w-full border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:border-amber-500 focus:outline-none bg-black/20 text-white font-medium placeholder-slate-700" placeholder="YYYY">
                             </div>
                         </div>
 
                         <div class="grid sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Course of Study</label>
-                                <input type="text" required class="student_course w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. Accounting / O'Level">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Course of Study</label>
+                                <input type="text" required class="student_course w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="e.g. Accounting / O'Level">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Institution</label>
-                                <input type="text" required class="student_institution w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. LAUTECH">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Institution</label>
+                                <input type="text" required class="student_institution w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="e.g. LAUTECH">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Qualification</label>
-                                <input type="text" required class="student_qual w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. OND / SSCE">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Highest Qualification</label>
+                                <input type="text" required class="student_qual w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="e.g. OND / SSCE">
                             </div>
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Name of Guardian / Sponsor</label>
-                                <input type="text" required class="student_sponsor w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Sponsor Full Name">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Sponsor Name</label>
+                                <input type="text" required class="student_sponsor w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="Sponsor Full Name">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Tel No</label>
-                                <input type="tel" required class="student_sponsor_phone w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Sponsor Contact Number">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Sponsor Telephone No</label>
+                                <input type="tel" required class="student_sponsor_phone w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="Sponsor Contact Number">
                             </div>
                         </div>
 
-                        <div class="p-6 bg-slate-950/60 text-white rounded-2xl border border-blue-900 space-y-4">
-                            <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest text-center border-b border-blue-900 pb-2">STAGE BEING APPLIED FOR (Tick boxes as appropriate)</h5>
+                        <div class="p-6 bg-black/30 rounded-2xl border border-white/10 space-y-4 shadow-xl">
+                            <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest text-center border-b border-white/10 pb-3">STAGE BEING APPLIED FOR (Tick boxes as appropriate)</h5>
                             
                             <div class="grid sm:grid-cols-3 gap-6 pt-2">
-                                <div class="space-y-2 border-r border-blue-905 pr-2">
-                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-blue-900 pb-1">ATS 1</h6>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 1 - Basic Accounting" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Basic Acc.</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 1 - Business Law" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>B/Law</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 1 - Communication Skills" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Comm. Skills</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 1 - Economics" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Economics</span></label>
+                                <div class="space-y-2 border-r border-white/10 pr-2">
+                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-white/10 pb-1">ATS Part I</h6>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 1 - Basic Accounting" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Basic Acc.</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 1 - Business Law" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Business Law</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 1 - Communication Skills" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Comm. Skills</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 1 - Economics" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Economics</span></label>
                                 </div>
-                                <div class="space-y-2 border-r border-blue-900 pr-2">
-                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-blue-900 pb-1">ATS 2</h6>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 2 - Financial Accounting" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Financial Acc.</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 2 - Public Sector Accounting" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>PSA</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 2 - Information Technology" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>IT</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 2 - Quantitative Analysis" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Q/Analysis</span></label>
+                                <div class="space-y-2 border-r border-white/10 pr-2">
+                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-white/10 pb-1">ATS Part II</h6>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 2 - Financial Accounting" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Financial Acc.</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 2 - Public Sector Accounting" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>PSA</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 2 - Information Technology" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Info Tech (IT)</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 2 - Quantitative Analysis" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Q/Analysis</span></label>
                                 </div>
                                 <div class="space-y-2">
-                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-blue-900 pb-1">ATS 3</h6>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 3 - Management" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Management</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 3 - Cost Accounting" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Cost. Acc.</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 3 - Taxation" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>TAX</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 3 - Auditing" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Auditing</span></label>
+                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-white/10 pb-1">ATS Part III</h6>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 3 - Management" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Management</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 3 - Cost Accounting" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Cost Acc.</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 3 - Taxation" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Taxation</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="ATS Part 3 - Auditing" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>Auditing</span></label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-xs text-slate-300">
-                            <span class="font-bold text-amber-400 block uppercase tracking-wider mb-1"><i class="fa-solid fa-paperclip mr-1"></i> Required Attachments Checklist Reminder</span>
-                            <p class="text-[11px] text-slate-400 mb-2">Please prepare to bring physical copies of these items along to the campus admin hub floor center:</p>
-                            <ul class="list-disc pl-4 space-y-1 text-[11px]">
+                        <div class="p-5 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-xs text-slate-300">
+                            <span class="font-bold text-amber-400 block uppercase tracking-wider mb-1.5"><i class="fa-solid fa-paperclip mr-1.5"></i> Required Attachments Checklist Reminder</span>
+                            <p class="text-[11px] text-slate-400 mb-2">Please prepare to bring physical copies of these items along to the campus admin hub center:</p>
+                            <ul class="list-disc pl-4 space-y-1.5 text-[11px] text-slate-300">
                                 <li>Birth certificate / Declaration of Age</li>
                                 <li>O' Level Result(s) / Other Academic Certificates if any</li>
                                 <li>A passport photograph & NIN Slip</li>
                             </ul>
                         </div>
 
-                        <div class="p-5 border border-blue-900 bg-slate-950/40 rounded-2xl space-y-4">
+                        <div class="p-5 border border-white/10 bg-black/20 rounded-2xl space-y-4">
                             <span class="font-extrabold text-xs text-amber-400 uppercase tracking-wider block">Terms and Conditions Guidelines</span>
-                            <p class="text-[11px] text-slate-300 leading-normal">Ensure you are comfortable with the lecture timetable before paying. Payments made to PAC are <strong>NOT REFUNDABLE</strong>. At least 50% of Tuition MUST be paid before classroom entry. All candidates receive a grace period of 2 WEEKS to complete tuition funding balancing.</p>
+                            <p class="text-[11px] text-slate-300 leading-relaxed font-normal">Ensure you are comfortable with the lecture timetable before paying. Payments made to PAG are <strong>NOT REFUNDABLE</strong>. At least 50% of Tuition MUST be paid before classroom entry. All candidates receive a grace period of 2 WEEKS to complete tuition funding balancing.</p>
                             
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 border-t border-blue-900 mt-2">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-3 border-t border-white/10 mt-2">
                                 <label class="flex items-start text-xs text-slate-300 space-x-3 cursor-pointer sm:max-w-md">
-                                    <input type="checkbox" required class="rounded mt-0.5 border-blue-800 text-amber-500 bg-slate-900 focus:ring-0">
-                                    <span class="font-semibold leading-tight text-[11px]">I have fully understood and agree to the guidelines terms stated above.</span>
+                                    <input type="checkbox" required class="rounded mt-0.5 border-white/20 bg-slate-900 text-amber-500 focus:ring-0 h-4 w-4">
+                                    <span class="font-semibold leading-tight text-[11px] text-slate-400">I have fully understood and agree to the guidelines terms stated above.</span>
                                 </label>
                                 
                                 <div class="flex flex-col items-center sm:items-end">
-                                    <label class="relative border-2 border-dashed border-blue-800 w-44 h-16 rounded-xl flex flex-col items-center justify-center text-center p-1 bg-slate-950/80 cursor-pointer hover:bg-slate-950 transition shrink-0 group" id="atswa-sign-preview">
-                                        <i class="fa-solid fa-signature text-blue-400 group-hover:text-amber-500 transition text-sm"></i>
-                                        <span class="text-[8px] font-bold text-blue-400 uppercase tracking-wider mt-0.5">Attach Image Signature</span>
+                                    <label class="relative border border-dashed border-white/20 w-44 h-16 rounded-xl flex flex-col items-center justify-center text-center p-1 bg-black/40 cursor-pointer hover:border-amber-400 transition shrink-0 group" id="atswa-sign-preview">
+                                        <i class="fa-solid fa-signature text-slate-400 group-hover:text-amber-400 transition text-sm"></i>
+                                        <span class="text-[8px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Attach Image Signature</span>
                                         <input type="file" accept="image/*" required class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImageFile(this, 'atswa-sign-preview')">
                                     </label>
-                                    <span class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mt-1 sm:mr-2">Candidate's Signature</span>
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-1.5 sm:mr-2">Candidate's Signature</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="pt-2">
-                            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-blue-950 font-black py-4 rounded-xl shadow-lg text-xs uppercase tracking-widest transition">
+                            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-4 rounded-xl shadow-lg shadow-amber-500/20 text-xs uppercase tracking-widest transition">
                                 Submit ATSWA Form Registration <i class="fa-solid fa-arrow-right ml-2"></i>
                             </button>
                         </div>
@@ -545,48 +549,48 @@
             </div>
 
 
-            <div id="form-block-professional" class="bg-gradient-to-b from-blue-950 via-slate-900 to-blue-950 rounded-3xl p-6 lg:p-10 shadow-2xl border border-blue-800 text-slate-100 hidden">
-                <div class="text-center border-b border-dashed border-blue-800 pb-6 mb-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div id="form-block-professional" class="bg-white/[0.03] backdrop-blur-xl rounded-3xl p-6 lg:p-10 shadow-2xl border border-white/10 text-slate-100 transition duration-500 hidden">
+                <div class="text-center border-b border-white/10 pb-6 mb-8 flex flex-col sm:flex-row justify-between items-center gap-6">
                     <div class="text-center sm:text-left">
-                        <h3 class="text-sm font-extrabold text-blue-300 tracking-wide uppercase">Institute of Chartered Accountants of Nigeria</h3>
-                        <h4 class="text-2xl font-black text-blue-500 uppercase tracking-normal">PAC TUTORS</h4>
-                        <span class="inline-block bg-blue-700/10 border border-blue-700/20 text-blue-400 text-xs font-black tracking-wider px-3 py-1 rounded-md mt-2 uppercase">Professional Student Registration Form</span>
+                        <h3 class="text-xs font-black text-amber-400 tracking-widest uppercase">Institute of Chartered Accountants of Nigeria</h3>
+                        <h4 class="text-3xl font-black text-white uppercase tracking-normal mt-0.5">PAG TUTORS</h4>
+                        <span class="inline-block bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-wider px-3 py-1 rounded-md mt-2 uppercase">Professional Stage Registration Form</span>
                     </div>
                     
-                    <label class="relative border-2 border-dashed border-blue-700 w-28 h-28 rounded-xl flex flex-col items-center justify-center text-center p-2 bg-slate-950/60 cursor-pointer hover:bg-slate-950 transition shrink-0 group" id="pro-passport-preview">
-                        <i class="fa-solid fa-camera text-blue-400 group-hover:text-blue-500 transition text-base"></i>
-                        <span class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mt-1">Upload Passport Photograph</span>
+                    <label class="relative border-2 border-dashed border-white/20 w-28 h-28 rounded-2xl flex flex-col items-center justify-center text-center p-2 bg-black/40 cursor-pointer hover:border-amber-400 transition shrink-0 group shadow-inner" id="pro-passport-preview">
+                        <i class="fa-solid fa-camera text-slate-400 group-hover:text-amber-400 transition text-lg"></i>
+                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-1.5 group-hover:text-slate-200">Upload Passport</span>
                         <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImageFile(this, 'pro-passport-preview')">
                     </label>
                 </div>
 
                 <form onsubmit="sendRegistrationSheet(event, 'form-block-professional', 'PROFESSIONAL STAGE STUDENT REGISTRATION')">
                     <div class="space-y-6">
-                        <h5 class="text-xs font-black text-blue-400 uppercase tracking-widest border-l-4 border-blue-700 pl-2">Blank Fields (To be Filled)</h5>
+                        <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest border-l-4 border-amber-500 pl-2">Personal Data Details</h5>
                         
                         <div class="grid sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Name (Surname)</label>
-                                <input type="text" required class="student_surname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="SURNAME">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Surname</label>
+                                <input type="text" required class="student_surname w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="SURNAME">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">First Name</label>
-                                <input type="text" required class="student_firstname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="FIRST NAME">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">First Name</label>
+                                <input type="text" required class="student_firstname w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="FIRST NAME">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Middle Name</label>
-                                <input type="text" required class="student_midname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="MIDDLE NAME">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Middle Name</label>
+                                <input type="text" required class="student_midname w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="MIDDLE NAME">
                             </div>
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Date of Birth</label>
-                                <input type="date" required class="student_dob w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-slate-300">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Date of Birth</label>
+                                <input type="date" required class="student_dob w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-slate-300 transition">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Marital Status</label>
-                                <select required class="student_marital w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-slate-300">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Marital Status</label>
+                                <select required class="student_marital w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-slate-300 transition">
                                     <option value="" disabled selected class="text-slate-600">-- Select Status --</option>
                                     <option value="Single" class="bg-slate-900 text-white">Single</option>
                                     <option value="Married" class="bg-slate-900 text-white">Married</option>
@@ -596,111 +600,113 @@
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Telephone No</label>
-                                <input type="tel" required class="student_phone w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. 08012345678">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Telephone No</label>
+                                <input type="tel" required class="student_phone w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="e.g. 08012345678">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Email Address</label>
-                                <input type="email" required class="student_email w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="name@example.com">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Email Address</label>
+                                <input type="email" required class="student_email w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="name@example.com">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Residential Address</label>
-                            <input type="text" required class="student_address w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Full Home Address Details">
+                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Residential Address</label>
+                            <input type="text" required class="student_address w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="Full Home Address Details">
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">State of Origin</label>
-                                <input type="text" required class="student_state w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="State name">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">State of Origin</label>
+                                <input type="text" required class="student_state w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="State name">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Local Govt. of Origin</label>
-                                <input type="text" required class="student_lga w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="L.G.A area">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Local Govt. of Origin</label>
+                                <input type="text" required class="student_lga w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="L.G.A area">
                             </div>
                         </div>
 
-                        <div class="p-4 bg-slate-950/40 border border-blue-900 rounded-2xl grid sm:grid-cols-2 gap-4">
+                        <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest border-l-4 border-amber-500 pl-2 pt-2">Academic Histories</h5>
+                        
+                        <div class="p-5 bg-white/[0.02] border border-white/5 rounded-2xl grid sm:grid-cols-2 gap-4 shadow-inner">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Primary School</label>
-                                <input type="text" required class="student_primary w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="Primary School Name">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Primary School</label>
+                                <input type="text" required class="student_primary w-full border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:border-amber-500 focus:outline-none bg-black/20 text-white font-medium placeholder-slate-700" placeholder="Primary School Name">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Year of Grad</label>
-                                <input type="number" min="1950" max="2030" required class="student_primary_grad w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="YYYY">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Year of Graduation</label>
+                                <input type="number" min="1950" max="2030" required class="student_primary_grad w-full border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:border-amber-500 focus:outline-none bg-black/20 text-white font-medium placeholder-slate-700" placeholder="YYYY">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Secondary School</label>
-                                <input type="text" required class="student_secondary w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="Secondary School Name">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Secondary School</label>
+                                <input type="text" required class="student_secondary w-full border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:border-amber-500 focus:outline-none bg-black/20 text-white font-medium placeholder-slate-700" placeholder="Secondary School Name">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Year of Grad</label>
-                                <input type="number" min="1950" max="2030" required class="student_secondary_grad w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="YYYY">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Year of Graduation</label>
+                                <input type="number" min="1950" max="2030" required class="student_secondary_grad w-full border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:border-amber-500 focus:outline-none bg-black/20 text-white font-medium placeholder-slate-700" placeholder="YYYY">
                             </div>
                         </div>
 
                         <div class="grid sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Course of Study</label>
-                                <input type="text" required class="student_course w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. B.Sc Accounting">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Course of Study</label>
+                                <input type="text" required class="student_course w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="e.g. B.Sc Accounting">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Institution</label>
-                                <input type="text" required class="student_institution w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="University name">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Institution</label>
+                                <input type="text" required class="student_institution w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="University name">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Qualification</label>
-                                <input type="text" required class="student_qual w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. B.Sc / HND / ATS">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Highest Qualification</label>
+                                <input type="text" required class="student_qual w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="e.g. B.Sc / HND / ATS">
                             </div>
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Name of Guardian / Sponsor</label>
-                                <input type="text" required class="student_sponsor w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Sponsor Full Name">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Sponsor Name</label>
+                                <input type="text" required class="student_sponsor w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="Sponsor Full Name">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Tel No</label>
-                                <input type="tel" required class="student_sponsor_phone w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Sponsor Contact Number">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Sponsor Telephone No</label>
+                                <input type="tel" required class="student_sponsor_phone w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition" placeholder="Sponsor Contact Number">
                             </div>
                         </div>
 
-                        <div class="p-6 bg-slate-950/60 text-white rounded-2xl border border-blue-900 space-y-4">
-                            <h5 class="text-xs font-black text-blue-400 uppercase tracking-widest text-center border-b border-blue-900 pb-2">Professional Level Course Selection Grid</h5>
+                        <div class="p-6 bg-black/30 rounded-2xl border border-white/10 space-y-4 shadow-xl">
+                            <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest text-center border-b border-white/10 pb-3">Professional Level Course Selection Grid</h5>
                             
                             <div class="grid sm:grid-cols-3 gap-6 pt-2">
-                                <div class="space-y-2 border-r border-blue-900 pr-2">
-                                    <h6 class="text-xs font-bold text-blue-400 uppercase tracking-wide border-b border-blue-900 pb-1">FOUNDATION</h6>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="FOUNDATION Stage - Financial Accounting" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>FA</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="FOUNDATION Stage - Business Law" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>B/LAW</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="FOUNDATION Stage - Management Information" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>MA</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="FOUNDATION Stage - Business, Economy & Finance" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>B/Environ</span></label>
+                                <div class="space-y-2 border-r border-white/10 pr-2">
+                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-white/10 pb-1">FOUNDATION</h6>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="FOUNDATION Stage - Financial Accounting" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>FA</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="FOUNDATION Stage - Business Law" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>B/LAW</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="FOUNDATION Stage - Management Information" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>MA</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="FOUNDATION Stage - Business, Economy & Finance" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>B/Environ</span></label>
                                 </div>
-                                <div class="space-y-2 border-r border-blue-900 pr-2">
-                                    <h6 class="text-xs font-bold text-blue-400 uppercase tracking-wide border-b border-blue-900 pb-1">SKILLS</h6>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Financial Reporting" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>FR</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Performance Management" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>PM</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Audit & Assurance" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>AA (Audit)</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Financial Management" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>F/MGT</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Taxation" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>TAX</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Public Sector Acc. & Finance" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>PSAF</span></label>
+                                <div class="space-y-2 border-r border-white/10 pr-2">
+                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-white/10 pb-1">SKILLS</h6>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="SKILLS Stage - Financial Reporting" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>FR</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="SKILLS Stage - Performance Management" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>PM</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="SKILLS Stage - Audit & Assurance" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>AA (Audit)</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="SKILLS Stage - Financial Management" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>F/MGT</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="SKILLS Stage - Taxation" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>TAX</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="SKILLS Stage - Public Sector Acc. & Finance" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>PSAF</span></label>
                                 </div>
                                 <div class="space-y-2">
-                                    <h6 class="text-xs font-bold text-blue-400 uppercase tracking-wide border-b border-blue-900 pb-1">PROFESSIONAL</h6>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Strategic Business Reporting" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>SBR</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Strategic Financial Management" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>SFM</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Advanced Taxation" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>AD. TAX</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Advanced Audit & Assurance" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>AD. AUDIT</span></label>
-                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Case Study" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>CASE STUDY</span></label>
+                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-white/10 pb-1">PROFESSIONAL</h6>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="PROFESSIONAL Stage - Strategic Business Reporting" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>SBR</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="PROFESSIONAL Stage - Strategic Financial Management" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>SFM</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="PROFESSIONAL Stage - Advanced Taxation" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>AD. TAX</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="PROFESSIONAL Stage - Advanced Audit & Assurance" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>AD. AUDIT</span></label>
+                                    <label class="flex items-center text-xs space-x-2.5 cursor-pointer py-1 hover:text-amber-400"><input type="checkbox" value="PROFESSIONAL Stage - Case Study" class="course_checkbox h-4 w-4 rounded border-white/20 bg-slate-900 text-amber-500 focus:ring-0"> <span>CASE STUDY</span></label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="p-4 bg-blue-50/10 border border-blue-800 rounded-2xl text-xs text-slate-300">
-                            <span class="font-bold text-blue-400 block uppercase tracking-wider mb-1"><i class="fa-solid fa-paperclip mr-1"></i> Required Attachments Checklist Reminder</span>
-                            <p class="text-[11px] text-slate-400 mb-2">Please prepare to bring physical copies of these items along to the campus admin hub floor center:</p>
-                            <ul class="list-disc pl-4 space-y-1 text-[11px]">
+                        <div class="p-5 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-xs text-slate-300">
+                            <span class="font-bold text-amber-400 block uppercase tracking-wider mb-1.5"><i class="fa-solid fa-paperclip mr-1.5"></i> Required Attachments Checklist Reminder</span>
+                            <p class="text-[11px] text-slate-400 mb-2">Please prepare to bring physical copies of these items along to the campus admin hub center:</p>
+                            <ul class="list-disc pl-4 space-y-1.5 text-[11px] text-slate-300">
                                 <li>Birth certificate / Declaration of Age</li>
                                 <li>O' Level Result(s) / Other Academic Certificates if any</li>
                                 <li>2 passport photographs & NIN Slip</li>
@@ -708,29 +714,29 @@
                             </ul>
                         </div>
 
-                        <div class="p-5 border border-blue-900 bg-slate-950/40 rounded-2xl space-y-4">
-                            <span class="font-extrabold text-xs text-blue-400 uppercase tracking-wider block">Terms and Conditions Guidelines</span>
-                            <p class="text-[11px] text-slate-300 leading-normal">Ensure you are comfortable with the lecture timetable before paying. Payments made to PAC are <strong>NOT REFUNDABLE</strong>. At least 50% of Tuition MUST be paid before classroom entry. All candidates receive a grace period of 2 WEEKS to complete tuition funding balancing.</p>
+                        <div class="p-5 border border-white/10 bg-black/20 rounded-2xl space-y-4">
+                            <span class="font-extrabold text-xs text-amber-400 uppercase tracking-wider block">Terms and Conditions Guidelines</span>
+                            <p class="text-[11px] text-slate-300 leading-relaxed font-normal">Ensure you are comfortable with the lecture timetable before paying. Payments made to PAG are <strong>NOT REFUNDABLE</strong>. At least 50% of Tuition MUST be paid before classroom entry. All candidates receive a grace period of 2 WEEKS to complete tuition funding balancing.</p>
                             
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 border-t border-blue-900 mt-2">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-3 border-t border-white/10 mt-2">
                                 <label class="flex items-start text-xs text-slate-300 space-x-3 cursor-pointer sm:max-w-md">
-                                    <input type="checkbox" required class="rounded mt-0.5 border-blue-800 text-blue-600 bg-slate-900 focus:ring-0">
-                                    <span class="font-semibold leading-tight text-[11px]">I have fully understood and agree to the guidelines terms stated above.</span>
+                                    <input type="checkbox" required class="rounded mt-0.5 border-white/20 bg-slate-900 text-amber-500 focus:ring-0 h-4 w-4">
+                                    <span class="font-semibold leading-tight text-[11px] text-slate-400">I have fully understood and agree to the guidelines terms stated above.</span>
                                 </label>
                                 
                                 <div class="flex flex-col items-center sm:items-end">
-                                    <label class="relative border-2 border-dashed border-blue-800 w-44 h-16 rounded-xl flex flex-col items-center justify-center text-center p-1 bg-slate-950/80 cursor-pointer hover:bg-slate-950 transition shrink-0 group" id="pro-sign-preview">
-                                        <i class="fa-solid fa-signature text-blue-400 group-hover:text-blue-500 transition text-sm"></i>
-                                        <span class="text-[8px] font-bold text-blue-400 uppercase tracking-wider mt-0.5">Attach Image Signature</span>
+                                    <label class="relative border border-dashed border-white/20 w-44 h-16 rounded-xl flex flex-col items-center justify-center text-center p-1 bg-black/40 cursor-pointer hover:border-amber-400 transition shrink-0 group" id="pro-sign-preview">
+                                        <i class="fa-solid fa-signature text-slate-400 group-hover:text-amber-400 transition text-sm"></i>
+                                        <span class="text-[8px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Attach Image Signature</span>
                                         <input type="file" accept="image/*" required class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImageFile(this, 'pro-sign-preview')">
                                     </label>
-                                    <span class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mt-1 sm:mr-2">Candidate's Signature</span>
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-1.5 sm:mr-2">Candidate's Signature</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="pt-2">
-                            <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-4 rounded-xl shadow-lg text-xs uppercase tracking-widest transition">
+                            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-4 rounded-xl shadow-lg shadow-amber-500/20 text-xs uppercase tracking-widest transition">
                                 Submit Professional Form Registration <i class="fa-solid fa-arrow-right ml-2"></i>
                             </button>
                         </div>
@@ -817,7 +823,7 @@
             <div class="space-y-2">
                 <h5 class="text-white font-bold text-base">Contact Support</h5>
                 <p class="text-xs flex items-center"><i class="fa-solid fa-phone mr-2 text-amber-500"></i> <a href="#" class="dynamic-call-link hover:text-white">+234 906 031 2125</a></p>
-                <p class="text-xs flex items-center"><i class="fa-solid fa-envelope mr-2 text-amber-500"></i> <a href="#" class="dynamic-email-link hover:text-white"><span class="dynamic-email-link">Loading...</span></a></p>
+                <p class="text-xs flex items-center"><i class="fa-solid fa-envelope mr-2 text-amber-500"></i> <a href="#" class="dynamic-call-link hover:text-white"><span class="dynamic-email-link">Loading...</span></a></p>
             </div>
         </div>
         <div class="container mx-auto px-4 pt-6 flex flex-col md:flex-row justify-between items-center text-[11px] text-slate-600">

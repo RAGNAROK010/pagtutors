@@ -15,8 +15,7 @@
         .bg-pag-blue { background-color: #3B7DC4; }
         .text-pag-blue { color: #3B7DC4; }
         .border-pag-blue { border-color: #3B7DC4; }
-        
-        /* Interactive Clickable Blocks Cues */
+
         .clickable-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
@@ -29,62 +28,138 @@
     </style>
 </head>
 <body class="bg-pag-blue text-slate-800">
-
     <script>
-        // Global Contact Configuration
-        const MY_WHATSAPP_NUMBER = "2349060312125"; 
+        const MY_WHATSAPP_NUMBER = "2349060312125";
         const MY_EMAIL_ADDRESS = "pagtutors2007@gmail.com";
-
-        // Automated script to dynamically set all contact endpoints on launch
+        
         document.addEventListener("DOMContentLoaded", function() {
-            // Update WhatsApp Link buttons
             document.querySelectorAll(".dynamic-wa-link").forEach(el => {
                 el.href = `https://wa.me/${MY_WHATSAPP_NUMBER}`;
             });
-            // Update Phone Call buttons
             document.querySelectorAll(".dynamic-call-link").forEach(el => {
                 el.href = `tel:+${MY_WHATSAPP_NUMBER}`;
             });
-            // Update Email fields
             document.querySelectorAll(".dynamic-email-link").forEach(el => {
                 el.href = `mailto:${MY_EMAIL_ADDRESS}`;
                 if(el.tagName === 'SPAN') el.textContent = MY_EMAIL_ADDRESS;
             });
         });
 
-        // Form Submission Processor
-        function processRegistration(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById("student_name").value;
-            const phone = document.getElementById("student_phone").value;
-            const email = document.getElementById("student_email").value;
-            const track = document.getElementById("student_track").value;
-
-            const textMessage = `Hello PAG Tutors, I would like to enroll for the ICAN Program.%0A%0A` +
-                                `*--- Student Enrollment Sheet ---*%0A` +
-                                `*Full Name:* ${encodeURIComponent(name)}%0A` +
-                                `*WhatsApp:* ${encodeURIComponent(phone)}%0A` +
-                                `*Email:* ${encodeURIComponent(email)}%0A` +
-                                `*Selected Target:* ${encodeURIComponent(track)}`;
-
-            window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${textMessage}`, '_blank');
+        // Function to preview selected Passport or Signature files
+        function previewImageFile(inputElement, previewId) {
+            const file = inputElement.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewBox = document.getElementById(previewId);
+                    previewBox.style.backgroundImage = `url('${e.target.result}')`;
+                    previewBox.style.backgroundSize = 'contain';
+                    previewBox.style.backgroundRepeat = 'no-repeat';
+                    previewBox.style.backgroundPosition = 'center';
+                    previewBox.innerHTML = ''; // Clear text icons
+                }
+                reader.readAsDataURL(file);
+            }
         }
 
-        // Helper function to dynamically update custom drop-downs when clicking interactive blocks
-        function scrollToEnroll(stageName) {
-            if(stageName) {
-                const selector = document.getElementById("student_track");
-                if(selector) {
-                    for (let i = 0; i < selector.options.length; i++) {
-                        if (selector.options[i].text.includes(stageName)) {
-                            selector.selectedIndex = i;
-                            break;
-                        }
-                    }
-                }
+        // Handles Switch Form Selection View Tabs
+        function setActiveFormTab(targetType) {
+            const atswaBtn = document.getElementById("tab-btn-atswa");
+            const proBtn = document.getElementById("tab-btn-professional");
+            const atswaSection = document.getElementById("form-block-atswa");
+            const proSection = document.getElementById("form-block-professional");
+
+            if(targetType === 'atswa') {
+                atswaBtn.className = "flex-1 bg-amber-500 text-blue-950 text-center py-4 rounded-xl font-black text-sm transition shadow shadow-amber-500/20";
+                proBtn.className = "flex-1 bg-slate-800 text-slate-400 text-center py-4 rounded-xl font-bold text-sm hover:text-white transition";
+                atswaSection.classList.remove("hidden");
+                proSection.classList.add("hidden");
+            } else {
+                proBtn.className = "flex-1 bg-blue-700 text-white text-center py-4 rounded-xl font-black text-sm transition shadow shadow-blue-700/20";
+                atswaBtn.className = "flex-1 bg-slate-800 text-slate-400 text-center py-4 rounded-xl font-bold text-sm hover:text-white transition";
+                proSection.classList.remove("hidden");
+                atswaSection.classList.add("hidden");
             }
+        }
+
+        // Form Process Action - Formatted explicitly like a Google Form Response Summary
+        function sendRegistrationSheet(event, formBlockId, formTypeName) {
+            event.preventDefault();
+            const scope = document.getElementById(formBlockId);
+
+            // Personal Fields gathering
+            const sur = scope.querySelector(".student_surname").value.trim().toUpperCase();
+            const first = scope.querySelector(".student_firstname").value.trim().toUpperCase();
+            const mid = scope.querySelector(".student_midname").value.trim().toUpperCase();
+            const dob = scope.querySelector(".student_dob").value;
+            const marital = scope.querySelector(".student_marital").value;
+            const phone = scope.querySelector(".student_phone").value.trim();
+            const email = scope.querySelector(".student_email").value.trim();
+            const address = scope.querySelector(".student_address").value.trim();
+            const state = scope.querySelector(".student_state").value.trim().toUpperCase();
+            const lga = scope.querySelector(".student_lga").value.trim().toUpperCase();
+
+            // Education Fields
+            const pri = scope.querySelector(".student_primary").value.trim();
+            const priGrad = scope.querySelector(".student_primary_grad").value.trim();
+            const sec = scope.querySelector(".student_secondary").value.trim();
+            const secGrad = scope.querySelector(".student_secondary_grad").value.trim();
+            const course = scope.querySelector(".student_course").value.trim();
+            const inst = scope.querySelector(".student_institution").value.trim();
+            const qual = scope.querySelector(".student_qual").value.trim();
+
+            // Sponsor Details
+            const sponsor = scope.querySelector(".student_sponsor").value.trim();
+            const sponsorPhone = scope.querySelector(".student_sponsor_phone").value.trim();
+
+            // Gather Checked Courses dynamically
+            let chosenCourses = [];
+            scope.querySelectorAll(".course_checkbox:checked").forEach(box => {
+                chosenCourses.push(box.value);
+            });
+
+            if (chosenCourses.length === 0) {
+                alert("Please select at least one course paper from the grid selection sections below.");
+                return;
+            }
+
+            // Google Form Response Layout Style structure text message
+            let textStream = `📝 *GOOGLE FORM RESPONSE SUMMARY*%0A` +
+                             `*Form Title:* ${encodeURIComponent(formTypeName)}%0A` +
+                             `==================================%0A%0A` +
+                             `👤 *PERSONAL INFORMATION*%0A` +
+                             `• *Full Name:* ${encodeURIComponent(sur)}, ${encodeURIComponent(first)} ${encodeURIComponent(mid)}%0A` +
+                             `• *Date of Birth:* ${encodeURIComponent(dob)}%0A` +
+                             `• *Marital Status:* ${encodeURIComponent(marital)}%0A` +
+                             `• *Phone Number:* ${encodeURIComponent(phone)}%0A` +
+                             `• *Email Address:* ${encodeURIComponent(email)}%0A` +
+                             `• *Residential Address:* ${encodeURIComponent(address)}%0A` +
+                             `• *State of Origin:* ${encodeURIComponent(state)}%0A` +
+                             `• *L.G.A:* ${encodeURIComponent(lga)}%0A%0A` +
+                             `🎓 *ACADEMIC BACKGROUND*%0A` +
+                             `• *Primary School:* ${encodeURIComponent(pri)} (${encodeURIComponent(priGrad)})%0A` +
+                             `• *Secondary School:* ${encodeURIComponent(sec)} (${encodeURIComponent(secGrad)})%0A` +
+                             `• *Institution Attended:* ${encodeURIComponent(inst)}%0A` +
+                             `• *Course of Study:* ${encodeURIComponent(course)}%0A` +
+                             `• *Highest Qualification:* ${encodeURIComponent(qual)}%0A%0A` +
+                             `🛡️ *SPONSORSHIP & GUARDIAN DETAILS*%0A` +
+                             `• *Sponsor Name:* ${encodeURIComponent(sponsor)}%0A` +
+                             `• *Sponsor Phone:* ${encodeURIComponent(sponsorPhone)}%0A%0A` +
+                             `📚 *SELECTED COURSE PAPERS*%0A` +
+                             `• ${encodeURIComponent(chosenCourses.join("%0A• "))}%0A%0A` +
+                             `✍️ *AGREEMENT & SIGNATURE*%0A` +
+                             `• *Terms Condition:* Accepted & Agreed%0A` +
+                             `• *Status:* Complete Submission%0A%0A` +
+                             `_(Note: I am forwarding my uploaded Passport Photograph image and Digital Signature clip attachment directly inside this WhatsApp chat box)_`;
+
+            window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${textStream}`, '_blank');
+        }
+
+        function scrollToEnroll(formType) {
             document.getElementById("enroll").scrollIntoView({ behavior: "smooth" });
+            if (formType) {
+                setActiveFormTab(formType);
+            }
         }
     </script>
 
@@ -101,7 +176,6 @@
                     <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Ogbomoso's Trusted ICAN Tuition House</span>
                 </div>
             </a>
-            
             <nav class="hidden md:flex space-x-6 lg:space-x-8 font-semibold text-slate-600 text-sm">
                 <a href="#about" class="hover:text-blue-700 transition">About Us</a>
                 <a href="#programs" class="hover:text-blue-700 transition">Programs</a>
@@ -109,7 +183,6 @@
                 <a href="#testimonials" class="hover:text-blue-700 transition">Testimonials</a>
                 <a href="#contact" class="hover:text-blue-700 transition">Contact</a>
             </nav>
-
             <a href="#enroll" class="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2.5 rounded-xl font-bold shadow-md hover:shadow-lg transition text-sm">
                 Enroll Now
             </a>
@@ -127,7 +200,8 @@
                     Become a Chartered Accountant <span class="text-amber-400 block mt-1">with PAG Tutors</span>
                 </h1>
                 <p class="text-base text-blue-100 max-w-xl leading-relaxed">
-                    Ogbomoso’s Trusted ICAN Tuition House Since 2006. Providing premium professional coaching for ICAN-ATS & ICAN Professional Examinations. Join hundreds of students, graduates, NYSC members, and working professionals who passed with us.
+                    Ogbomoso’s Trusted ICAN Tuition House Since 2006. Providing premium professional coaching for ICAN-ATS & ICAN Professional Examinations.
+                    Join hundreds of students, graduates, NYSC members, and working professionals who passed with us.
                 </p>
                 <div class="flex flex-wrap gap-4 pt-2">
                     <a href="#enroll" class="bg-amber-500 hover:bg-amber-600 text-blue-950 font-extrabold px-6 py-3.5 rounded-xl shadow-lg transition text-sm">
@@ -141,7 +215,6 @@
                     </a>
                 </div>
             </div>
-
             <div class="relative group mx-auto w-full max-w-md md:max-w-none">
                 <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-blue-600 rounded-2xl blur opacity-25 transition duration-1000"></div>
                 <div class="relative bg-blue-950 rounded-2xl overflow-hidden shadow-2xl border border-white/10">
@@ -156,65 +229,66 @@
         </div>
     </section>
 
-    <section id="about" class="py-16 container mx-auto px-4 bg-slate-50 rounded-3xl">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <h2 class="text-3xl font-black text-blue-900">Why PAG Tutors?</h2>
-            <p class="text-slate-600 mt-2 text-sm">Engineered carefully since 2006 to bridge the gap between academic knowledge and professional accounting success.</p>
-        </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
-                <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-700 text-lg mb-4"><i class="fa-solid fa-award"></i></div>
-                <h3 class="font-bold text-base text-slate-900 mb-1">20+ Years Experience</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Established 2006, we know exactly what ICAN examiners want and expect from candidates.</p>
+    <div class="bg-slate-50 py-16 border-b border-slate-200">
+        <section id="about" class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-black text-blue-900">Why Choose PAG Tutors?</h2>
+                <p class="text-slate-600 mt-2 text-sm">Engineered carefully since 2006 to bridge the gap between academic knowledge and professional accounting success.</p>
             </div>
-            <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
-                <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center text-amber-700 text-lg mb-4"><i class="fa-solid fa-bullseye"></i></div>
-                <h3 class="font-bold text-base text-slate-900 mb-1">Targeted Coaching</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Small classes, aggressive past question drills, and exam-focused teaching methods.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-700 text-lg mb-4"><i class="fa-solid fa-award"></i></div>
+                    <h3 class="font-bold text-base text-slate-900 mb-1">20+ Years Experience</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Established 2006, we know exactly what ICAN examiners want and expect from candidates.</p>
+                </div>
+                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center text-amber-700 text-lg mb-4"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3 class="font-bold text-base text-slate-900 mb-1">Targeted Coaching</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Small classes, aggressive past question drills, and exam-focused teaching methods.</p>
+                </div>
+                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-700 text-lg mb-4"><i class="fa-solid fa-laptop-file"></i></div>
+                    <h3 class="font-bold text-base text-slate-900 mb-1">Flexible Learning</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Immersive physical classes in Ogbomoso combined with strategic revision tools.</p>
+                </div>
+                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-purple-700 text-lg mb-4"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3 class="font-bold text-base text-slate-900 mb-1">Proven Results</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Consistently high pass rates recorded across both ATS layers and final Professional stages.</p>
+                </div>
             </div>
-            <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
-                <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-700 text-lg mb-4"><i class="fa-solid fa-laptop-file"></i></div>
-                <h3 class="font-bold text-base text-slate-900 mb-1">Flexible Learning</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Immersive physical classes in Ogbomoso combined with strategic revision tools.</p>
+            <div class="mt-12 grid md:grid-cols-3 gap-8">
+                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-6 lg:p-8 rounded-2xl shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-extrabold text-blue-900 mb-3 flex items-center"><i class="fa-solid fa-circle-info mr-2 text-base text-amber-500"></i> Who We Are</h4>
+                        <p class="text-xs lg:text-sm text-slate-600 leading-relaxed font-normal">PAG Tutors is a professional accountancy training centre founded in 2006. We specialize in preparing students for the Institute of Chartered Accountants of Nigeria (ICAN) examinations at both ATS and Professional levels. Our lecturers are highly experienced ICAN members and practicing accountants.</p>
+                    </div>
+                </div>
+                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-6 lg:p-8 rounded-2xl shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-extrabold text-blue-900 mb-3 flex items-center"><i class="fa-solid fa-crosshairs mr-2 text-base text-amber-500"></i> Our Mission</h4>
+                        <p class="text-xs lg:text-sm text-slate-600 leading-relaxed font-normal">To produce competent, ethical, and exam-ready accountants who can compete globally and seamlessly handle complex corporate financial demands.</p>
+                    </div>
+                </div>
+                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-6 lg:p-8 rounded-2xl shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-xl font-extrabold text-blue-900 mb-3 flex items-center"><i class="fa-solid fa-eye mr-2 text-base text-amber-500"></i> Our Vision</h4>
+                        <p class="text-xs lg:text-sm text-slate-600 leading-relaxed font-normal">To be the leading ICAN tuition house in South-West Nigeria, bridging the gap between basic academic knowledge and professional marketplace success.</p>
+                    </div>
+                </div>
             </div>
-            <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
-                <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center text-purple-700 text-lg mb-4"><i class="fa-solid fa-chart-line"></i></div>
-                <h3 class="font-bold text-base text-slate-900 mb-1">Proven Results</h3>
-                <p class="text-xs text-slate-600 leading-relaxed">Consistently high pass rates recorded across both ATS layers and final Professional stages.</p>
-            </div>
-        </div>
+        </section>
+    </div>
 
-        <div class="mt-12 grid md:grid-cols-3 gap-8">
-            <div onclick="scrollToEnroll('')" class="clickable-card bg-pag-blue p-6 lg:p-8 rounded-2xl shadow-md text-white flex flex-col justify-between">
-                <div>
-                    <h4 class="text-2xl font-extrabold text-amber-400 mb-3 flex items-center"><i class="fa-solid fa-circle-info mr-2 text-base"></i> Who We Are</h4>
-                    <p class="text-sm lg:text-base text-blue-50 leading-relaxed font-normal">PAG Tutors is a professional accountancy training centre founded in 2006. We specialize in preparing students for the Institute of Chartered Accountants of Nigeria (ICAN) examinations at both ATS and Professional levels. Our lecturers are highly experienced ICAN members and practicing accountants.</p>
-                </div>
-            </div>
-            <div onclick="scrollToEnroll('')" class="clickable-card bg-pag-blue p-6 lg:p-8 rounded-2xl shadow-md text-white flex flex-col justify-between">
-                <div>
-                    <h4 class="text-2xl font-extrabold text-amber-400 mb-3 flex items-center"><i class="fa-solid fa-crosshairs mr-2 text-base"></i> Our Mission</h4>
-                    <p class="text-sm lg:text-base text-blue-50 leading-relaxed font-normal">To produce competent, ethical, and exam-ready accountants who can compete globally and seamlessly handle complex corporate financial demands.</p>
-                </div>
-            </div>
-            <div onclick="scrollToEnroll('')" class="clickable-card bg-pag-blue p-6 lg:p-8 rounded-2xl shadow-md text-white flex flex-col justify-between">
-                <div>
-                    <h4 class="text-2xl font-extrabold text-amber-400 mb-3 flex items-center"><i class="fa-solid fa-eye mr-2 text-base"></i> Our Vision</h4>
-                    <p class="text-sm lg:text-base text-blue-50 leading-relaxed font-normal">To be the leading ICAN tuition house in South-West Nigeria, bridging the gap between basic academic knowledge and professional marketplace success.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="programs" class="py-16 bg-slate-100 border-y border-slate-200">
-        <div class="container mx-auto px-4">
+    <div class="bg-slate-100 py-16 border-b border-slate-200">
+        <section id="programs" class="container mx-auto px-4">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <h2 class="text-3xl font-black text-blue-900">Our Academic Courses</h2>
-                <p class="text-slate-600 mt-2 text-sm">Every single stream incorporates updated materials aligned tightly with the latest updated ICAN syllabus frameworks. <span class="text-blue-700 font-bold">Select a card below to enroll.</span></p>
+                <p class="text-slate-600 mt-2 text-sm">Every single stream incorporates updated materials aligned tightly with the latest updated ICAN syllabus frameworks.</p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div onclick="scrollToEnroll('ATS')" class="clickable-card bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
+                <div onclick="scrollToEnroll('atswa')" class="clickable-card bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
                     <div>
                         <span class="text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md">Entry Level</span>
                         <h3 class="text-lg font-bold text-slate-900 mt-2 mb-1">ICAN-ATS</h3>
@@ -223,10 +297,9 @@
                             For SSCE holders, OND/NCE holders, undergraduates, and beginners starting accountancy from scratch.
                         </p>
                     </div>
-                    <a href="https://wa.me/2349060312125?text=Hello%20PAG%20Tutors,%20I%20am%20interested%20in%20enrolling%20and%20making%20payments%20for%20the%20ICAN%20ATS%20Programme." target="_blank" class="block text-center text-xs font-bold bg-slate-100 text-slate-700 hover:bg-blue-700 hover:text-white py-2.5 rounded-lg transition" onclick="event.stopPropagation();">Contact Admin for ATS <i class="fa-brands fa-whatsapp ml-1 text-emerald-600"></i></a>
+                    <button class="w-full text-center text-xs font-bold bg-slate-100 text-slate-700 hover:bg-blue-700 hover:text-white py-2.5 rounded-lg transition">Contact Admin for ATS <i class="fa-brands fa-whatsapp ml-1 text-emerald-600"></i></button>
                 </div>
-
-                <div onclick="scrollToEnroll('Foundation')" class="clickable-card bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
+                <div onclick="scrollToEnroll('professional')" class="clickable-card bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
                     <div>
                         <span class="text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800 px-2.5 py-1 rounded-md">Professional Tier 1</span>
                         <h3 class="text-lg font-bold text-slate-900 mt-2 mb-1">Foundation Stage</h3>
@@ -235,11 +308,10 @@
                             For non-accounting graduates and conversion candidates establishing fundamental analytical frameworks.
                         </p>
                     </div>
-                    <a href="https://wa.me/2349060312125?text=Hello%20PAG%20Tutors,%20I%20am%20interested%20in%20enrolling%20and%20making%20payments%20for%20the%20ICAN%20Foundation%20Stage." target="_blank" class="block text-center text-xs font-bold bg-slate-100 text-slate-700 hover:bg-blue-700 hover:text-white py-2.5 rounded-lg transition" onclick="event.stopPropagation();">Contact Admin for Foundation <i class="fa-brands fa-whatsapp ml-1 text-emerald-600"></i></a>
+                    <button class="w-full text-center text-xs font-bold bg-slate-100 text-slate-700 hover:bg-blue-700 hover:text-white py-2.5 rounded-lg transition">Contact Admin for Foundation <i class="fa-brands fa-whatsapp ml-1 text-emerald-600"></i></button>
                 </div>
-
-                <div onclick="scrollToEnroll('Skills')" class="clickable-card bg-white rounded-2xl shadow-md border-2 border-blue-600 p-5 flex flex-col justify-between relative">
-                    <div class="absolute -top-3 right-4 bg-blue-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest">Popular</div>
+                <div onclick="scrollToEnroll('professional')" class="clickable-card bg-white rounded-2xl shadow-md border-2 border-blue-600 p-5 flex flex-col justify-between relative">
+                    <div class="absolute -inset-y-3 right-4 bg-blue-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-widest h-fit">Popular</div>
                     <div>
                         <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-md">Professional Tier 2</span>
                         <h3 class="text-lg font-bold text-slate-900 mt-2 mb-1 text-blue-600">Skills Stage</h3>
@@ -248,10 +320,9 @@
                             For accounting graduates (B.Sc/HND) and ATS graduates tackling Financial Reporting, Taxation, and Audit.
                         </p>
                     </div>
-                    <a href="https://wa.me/2349060312125?text=Hello%20PAG%20Tutors,%20I%20am%20interested%20in%20enrolling%20and%20making%20payments%20for%20the%20ICAN%20Skills%20Stage." target="_blank" class="block text-center text-xs font-bold bg-blue-600 text-white hover:bg-blue-700 py-2.5 rounded-lg transition shadow-sm" onclick="event.stopPropagation();">Contact Admin for Skills <i class="fa-brands fa-whatsapp ml-1 text-emerald-300"></i></a>
+                    <button class="w-full text-center text-xs font-bold bg-blue-600 text-white hover:bg-blue-700 py-2.5 rounded-lg transition shadow-sm">Contact Admin for Skills <i class="fa-brands fa-whatsapp ml-1 text-emerald-300"></i></button>
                 </div>
-
-                <div onclick="scrollToEnroll('Professional')" class="clickable-card bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
+                <div onclick="scrollToEnroll('professional')" class="clickable-card bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
                     <div>
                         <span class="text-[10px] font-bold uppercase tracking-wider bg-purple-100 text-purple-800 px-2.5 py-1 rounded-md">Professional Tier 3</span>
                         <h3 class="text-lg font-bold text-slate-900 mt-2 mb-1">Professional Stage</h3>
@@ -260,227 +331,500 @@
                             The ultimate level covering Corporate Reporting, Advanced Audit, and Strategic Financial Management.
                         </p>
                     </div>
-                    <a href="https://wa.me/2349060312125?text=Hello%20PAG%20Tutors,%20I%20am%20interested%20in%20enrolling%20and%20making%20payments%20for%20the%20ICAN%20Final%20Professional%20Stage." target="_blank" class="block text-center text-xs font-bold bg-slate-100 text-slate-700 hover:bg-blue-700 hover:text-white py-2.5 rounded-lg transition" onclick="event.stopPropagation();">Contact Admin for Professional <i class="fa-brands fa-whatsapp ml-1 text-emerald-600"></i></a>
+                    <button class="w-full text-center text-xs font-bold bg-slate-100 text-slate-700 hover:bg-blue-700 hover:text-white py-2.5 rounded-lg transition">Contact Admin for Professional <i class="fa-brands fa-whatsapp ml-1 text-emerald-600"></i></button>
                 </div>
             </div>
+        </section>
+    </div>
+
+    <section id="enroll" class="py-20 bg-slate-900 border-t-4 border-amber-500">
+        <div class="container mx-auto px-4 max-w-4xl">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12 text-white">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full">PAC REGISTRATION SYSTEM</span>
+                <h2 class="text-3xl font-black mt-3">Interactive Admissions Desk</h2>
+                <p class="text-slate-400 mt-2 text-sm">Please select your registration layer below to view the exact structural input form for your program.</p>
+            </div>
+
+            <div class="flex bg-slate-950 p-2 rounded-2xl border border-slate-800 space-x-2 mb-10 max-w-xl mx-auto">
+                <button type="button" id="tab-btn-atswa" onclick="setActiveFormTab('atswa')" class="flex-1 bg-amber-500 text-blue-950 text-center py-4 rounded-xl font-black text-sm transition shadow shadow-amber-500/20">
+                    <i class="fa-solid fa-graduation-cap mr-2"></i> ATSWA Registration Form
+                </button>
+                <button type="button" id="tab-btn-professional" onclick="setActiveFormTab('professional')" class="flex-1 bg-slate-800 text-slate-400 text-center py-4 rounded-xl font-bold text-sm hover:text-white transition">
+                    <i class="fa-solid fa-user-tie mr-2"></i> Professional Stage Form
+                </button>
+            </div>
+
+            <div id="form-block-atswa" class="bg-gradient-to-b from-blue-950 via-slate-900 to-blue-950 rounded-3xl p-6 lg:p-10 shadow-2xl border border-blue-800 text-slate-100">
+                <div class="text-center border-b border-dashed border-blue-800 pb-6 mb-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-sm font-extrabold text-blue-300 tracking-wide uppercase">Institute of Chartered Accountants of Nigeria</h3>
+                        <h4 class="text-2xl font-black text-amber-500 uppercase tracking-normal">PAC TUTORS</h4>
+                        <span class="inline-block bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-black tracking-wider px-3 py-1 rounded-md mt-2 uppercase">ATSWA Student Registration Form</span>
+                    </div>
+                    
+                    <label class="relative border-2 border-dashed border-blue-700 w-28 h-28 rounded-xl flex flex-col items-center justify-center text-center p-2 bg-slate-950/60 cursor-pointer hover:bg-slate-950 transition shrink-0 group" id="atswa-passport-preview">
+                        <i class="fa-solid fa-camera text-blue-400 group-hover:text-amber-500 transition text-base"></i>
+                        <span class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mt-1">Upload Passport Photograph</span>
+                        <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImageFile(this, 'atswa-passport-preview')">
+                    </label>
+                </div>
+
+                <form onsubmit="sendRegistrationSheet(event, 'form-block-atswa', 'ATSWA STUDENT REGISTRATION')">
+                    <div class="space-y-6">
+                        <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest border-l-4 border-amber-500 pl-2">Blank Fields (To be Filled)</h5>
+                        
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Name (Surname)</label>
+                                <input type="text" required class="student_surname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="SURNAME">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">First Name</label>
+                                <input type="text" required class="student_firstname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="FIRST NAME">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Middle Name</label>
+                                <input type="text" required class="student_midname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="MIDDLE NAME">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Date of Birth</label>
+                                <input type="date" required class="student_dob w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-slate-300">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Marital Status</label>
+                                <select required class="student_marital w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-slate-300">
+                                    <option value="" disabled selected class="text-slate-600">-- Select Status --</option>
+                                    <option value="Single" class="bg-slate-900 text-white">Single</option>
+                                    <option value="Married" class="bg-slate-900 text-white">Married</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Telephone No</label>
+                                <input type="tel" required class="student_phone w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. 08012345678">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Email Address</label>
+                                <input type="email" required class="student_email w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="name@example.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Residential Address</label>
+                            <input type="text" required class="student_address w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Full Home Address Details">
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">State of Origin</label>
+                                <input type="text" required class="student_state w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="State name">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Local Govt. of Origin</label>
+                                <input type="text" required class="student_lga w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="L.G.A area">
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-950/40 border border-blue-900 rounded-2xl grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Primary School</label>
+                                <input type="text" required class="student_primary w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="Primary School Name">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Year of Grad</label>
+                                <input type="number" min="1950" max="2030" required class="student_primary_grad w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="YYYY">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Secondary School</label>
+                                <input type="text" required class="student_secondary w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="Secondary School Name">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Year of Grad</label>
+                                <input type="number" min="1950" max="2030" required class="student_secondary_grad w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="YYYY">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Course of Study</label>
+                                <input type="text" required class="student_course w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. Accounting / O'Level">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Institution</label>
+                                <input type="text" required class="student_institution w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. LAUTECH">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Qualification</label>
+                                <input type="text" required class="student_qual w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. OND / SSCE">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Name of Guardian / Sponsor</label>
+                                <input type="text" required class="student_sponsor w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Sponsor Full Name">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Tel No</label>
+                                <input type="tel" required class="student_sponsor_phone w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Sponsor Contact Number">
+                            </div>
+                        </div>
+
+                        <div class="p-6 bg-slate-950/60 text-white rounded-2xl border border-blue-900 space-y-4">
+                            <h5 class="text-xs font-black text-amber-400 uppercase tracking-widest text-center border-b border-blue-900 pb-2">STAGE BEING APPLIED FOR (Tick boxes as appropriate)</h5>
+                            
+                            <div class="grid sm:grid-cols-3 gap-6 pt-2">
+                                <div class="space-y-2 border-r border-blue-905 pr-2">
+                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-blue-900 pb-1">ATS 1</h6>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 1 - Basic Accounting" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Basic Acc.</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 1 - Business Law" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>B/Law</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 1 - Communication Skills" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Comm. Skills</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 1 - Economics" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Economics</span></label>
+                                </div>
+                                <div class="space-y-2 border-r border-blue-900 pr-2">
+                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-blue-900 pb-1">ATS 2</h6>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 2 - Financial Accounting" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Financial Acc.</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 2 - Public Sector Accounting" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>PSA</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 2 - Information Technology" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>IT</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 2 - Quantitative Analysis" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Q/Analysis</span></label>
+                                </div>
+                                <div class="space-y-2">
+                                    <h6 class="text-xs font-bold text-amber-500 uppercase tracking-wide border-b border-blue-900 pb-1">ATS 3</h6>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 3 - Management" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Management</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 3 - Cost Accounting" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Cost. Acc.</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 3 - Taxation" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>TAX</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-amber-300"><input type="checkbox" value="ATS Part 3 - Auditing" class="course_checkbox rounded border-slate-700 text-amber-500 focus:ring-0"> <span>Auditing</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-xs text-slate-300">
+                            <span class="font-bold text-amber-400 block uppercase tracking-wider mb-1"><i class="fa-solid fa-paperclip mr-1"></i> Required Attachments Checklist Reminder</span>
+                            <p class="text-[11px] text-slate-400 mb-2">Please prepare to bring physical copies of these items along to the campus admin hub floor center:</p>
+                            <ul class="list-disc pl-4 space-y-1 text-[11px]">
+                                <li>Birth certificate / Declaration of Age</li>
+                                <li>O' Level Result(s) / Other Academic Certificates if any</li>
+                                <li>A passport photograph & NIN Slip</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-5 border border-blue-900 bg-slate-950/40 rounded-2xl space-y-4">
+                            <span class="font-extrabold text-xs text-amber-400 uppercase tracking-wider block">Terms and Conditions Guidelines</span>
+                            <p class="text-[11px] text-slate-300 leading-normal">Ensure you are comfortable with the lecture timetable before paying. Payments made to PAC are <strong>NOT REFUNDABLE</strong>. At least 50% of Tuition MUST be paid before classroom entry. All candidates receive a grace period of 2 WEEKS to complete tuition funding balancing.</p>
+                            
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 border-t border-blue-900 mt-2">
+                                <label class="flex items-start text-xs text-slate-300 space-x-3 cursor-pointer sm:max-w-md">
+                                    <input type="checkbox" required class="rounded mt-0.5 border-blue-800 text-amber-500 bg-slate-900 focus:ring-0">
+                                    <span class="font-semibold leading-tight text-[11px]">I have fully understood and agree to the guidelines terms stated above.</span>
+                                </label>
+                                
+                                <div class="flex flex-col items-center sm:items-end">
+                                    <label class="relative border-2 border-dashed border-blue-800 w-44 h-16 rounded-xl flex flex-col items-center justify-center text-center p-1 bg-slate-950/80 cursor-pointer hover:bg-slate-950 transition shrink-0 group" id="atswa-sign-preview">
+                                        <i class="fa-solid fa-signature text-blue-400 group-hover:text-amber-500 transition text-sm"></i>
+                                        <span class="text-[8px] font-bold text-blue-400 uppercase tracking-wider mt-0.5">Attach Image Signature</span>
+                                        <input type="file" accept="image/*" required class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImageFile(this, 'atswa-sign-preview')">
+                                    </label>
+                                    <span class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mt-1 sm:mr-2">Candidate's Signature</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-blue-950 font-black py-4 rounded-xl shadow-lg text-xs uppercase tracking-widest transition">
+                                Submit ATSWA Form Registration <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <div id="form-block-professional" class="bg-gradient-to-b from-blue-950 via-slate-900 to-blue-950 rounded-3xl p-6 lg:p-10 shadow-2xl border border-blue-800 text-slate-100 hidden">
+                <div class="text-center border-b border-dashed border-blue-800 pb-6 mb-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-sm font-extrabold text-blue-300 tracking-wide uppercase">Institute of Chartered Accountants of Nigeria</h3>
+                        <h4 class="text-2xl font-black text-blue-500 uppercase tracking-normal">PAC TUTORS</h4>
+                        <span class="inline-block bg-blue-700/10 border border-blue-700/20 text-blue-400 text-xs font-black tracking-wider px-3 py-1 rounded-md mt-2 uppercase">Professional Student Registration Form</span>
+                    </div>
+                    
+                    <label class="relative border-2 border-dashed border-blue-700 w-28 h-28 rounded-xl flex flex-col items-center justify-center text-center p-2 bg-slate-950/60 cursor-pointer hover:bg-slate-950 transition shrink-0 group" id="pro-passport-preview">
+                        <i class="fa-solid fa-camera text-blue-400 group-hover:text-blue-500 transition text-base"></i>
+                        <span class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mt-1">Upload Passport Photograph</span>
+                        <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImageFile(this, 'pro-passport-preview')">
+                    </label>
+                </div>
+
+                <form onsubmit="sendRegistrationSheet(event, 'form-block-professional', 'PROFESSIONAL STAGE STUDENT REGISTRATION')">
+                    <div class="space-y-6">
+                        <h5 class="text-xs font-black text-blue-400 uppercase tracking-widest border-l-4 border-blue-700 pl-2">Blank Fields (To be Filled)</h5>
+                        
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Name (Surname)</label>
+                                <input type="text" required class="student_surname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="SURNAME">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">First Name</label>
+                                <input type="text" required class="student_firstname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="FIRST NAME">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Middle Name</label>
+                                <input type="text" required class="student_midname w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="MIDDLE NAME">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Date of Birth</label>
+                                <input type="date" required class="student_dob w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-slate-300">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Marital Status</label>
+                                <select required class="student_marital w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-slate-300">
+                                    <option value="" disabled selected class="text-slate-600">-- Select Status --</option>
+                                    <option value="Single" class="bg-slate-900 text-white">Single</option>
+                                    <option value="Married" class="bg-slate-900 text-white">Married</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Telephone No</label>
+                                <input type="tel" required class="student_phone w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. 08012345678">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Email Address</label>
+                                <input type="email" required class="student_email w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="name@example.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Residential Address</label>
+                            <input type="text" required class="student_address w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Full Home Address Details">
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">State of Origin</label>
+                                <input type="text" required class="student_state w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="State name">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Local Govt. of Origin</label>
+                                <input type="text" required class="student_lga w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="L.G.A area">
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-950/40 border border-blue-900 rounded-2xl grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Primary School</label>
+                                <input type="text" required class="student_primary w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="Primary School Name">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Year of Grad</label>
+                                <input type="number" min="1950" max="2030" required class="student_primary_grad w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="YYYY">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Secondary School</label>
+                                <input type="text" required class="student_secondary w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="Secondary School Name">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-1">Year of Grad</label>
+                                <input type="number" min="1950" max="2030" required class="student_secondary_grad w-full border border-blue-800 rounded-xl px-4 py-2 text-xs focus:outline-none bg-slate-950/80 text-white font-medium placeholder-slate-700" placeholder="YYYY">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Course of Study</label>
+                                <input type="text" required class="student_course w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. B.Sc Accounting">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Institution</label>
+                                <input type="text" required class="student_institution w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="University name">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Qualification</label>
+                                <input type="text" required class="student_qual w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="e.g. B.Sc / HND / ATS">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Name of Guardian / Sponsor</label>
+                                <input type="text" required class="student_sponsor w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Sponsor Full Name">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-wider mb-1">Tel No</label>
+                                <input type="tel" required class="student_sponsor_phone w-full border border-blue-800/80 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium bg-slate-950/60 text-white placeholder-slate-600" placeholder="Sponsor Contact Number">
+                            </div>
+                        </div>
+
+                        <div class="p-6 bg-slate-950/60 text-white rounded-2xl border border-blue-900 space-y-4">
+                            <h5 class="text-xs font-black text-blue-400 uppercase tracking-widest text-center border-b border-blue-900 pb-2">Professional Level Course Selection Grid</h5>
+                            
+                            <div class="grid sm:grid-cols-3 gap-6 pt-2">
+                                <div class="space-y-2 border-r border-blue-900 pr-2">
+                                    <h6 class="text-xs font-bold text-blue-400 uppercase tracking-wide border-b border-blue-900 pb-1">FOUNDATION</h6>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="FOUNDATION Stage - Financial Accounting" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>FA</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="FOUNDATION Stage - Business Law" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>B/LAW</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="FOUNDATION Stage - Management Information" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>MA</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="FOUNDATION Stage - Business, Economy & Finance" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>B/Environ</span></label>
+                                </div>
+                                <div class="space-y-2 border-r border-blue-900 pr-2">
+                                    <h6 class="text-xs font-bold text-blue-400 uppercase tracking-wide border-b border-blue-900 pb-1">SKILLS</h6>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Financial Reporting" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>FR</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Performance Management" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>PM</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Audit & Assurance" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>AA (Audit)</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Financial Management" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>F/MGT</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Taxation" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>TAX</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="SKILLS Stage - Public Sector Acc. & Finance" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>PSAF</span></label>
+                                </div>
+                                <div class="space-y-2">
+                                    <h6 class="text-xs font-bold text-blue-400 uppercase tracking-wide border-b border-blue-900 pb-1">PROFESSIONAL</h6>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Strategic Business Reporting" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>SBR</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Strategic Financial Management" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>SFM</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Advanced Taxation" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>AD. TAX</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Advanced Audit & Assurance" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>AD. AUDIT</span></label>
+                                    <label class="flex items-center text-xs space-x-2 cursor-pointer py-0.5 hover:text-blue-300"><input type="checkbox" value="PROFESSIONAL Stage - Case Study" class="course_checkbox rounded border-slate-700 text-blue-600 focus:ring-0"> <span>CASE STUDY</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-blue-50/10 border border-blue-800 rounded-2xl text-xs text-slate-300">
+                            <span class="font-bold text-blue-400 block uppercase tracking-wider mb-1"><i class="fa-solid fa-paperclip mr-1"></i> Required Attachments Checklist Reminder</span>
+                            <p class="text-[11px] text-slate-400 mb-2">Please prepare to bring physical copies of these items along to the campus admin hub floor center:</p>
+                            <ul class="list-disc pl-4 space-y-1 text-[11px]">
+                                <li>Birth certificate / Declaration of Age</li>
+                                <li>O' Level Result(s) / Other Academic Certificates if any</li>
+                                <li>2 passport photographs & NIN Slip</li>
+                                <li>NYSC Certificate / Call up letter / Transcript</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-5 border border-blue-900 bg-slate-950/40 rounded-2xl space-y-4">
+                            <span class="font-extrabold text-xs text-blue-400 uppercase tracking-wider block">Terms and Conditions Guidelines</span>
+                            <p class="text-[11px] text-slate-300 leading-normal">Ensure you are comfortable with the lecture timetable before paying. Payments made to PAC are <strong>NOT REFUNDABLE</strong>. At least 50% of Tuition MUST be paid before classroom entry. All candidates receive a grace period of 2 WEEKS to complete tuition funding balancing.</p>
+                            
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 border-t border-blue-900 mt-2">
+                                <label class="flex items-start text-xs text-slate-300 space-x-3 cursor-pointer sm:max-w-md">
+                                    <input type="checkbox" required class="rounded mt-0.5 border-blue-800 text-blue-600 bg-slate-900 focus:ring-0">
+                                    <span class="font-semibold leading-tight text-[11px]">I have fully understood and agree to the guidelines terms stated above.</span>
+                                </label>
+                                
+                                <div class="flex flex-col items-center sm:items-end">
+                                    <label class="relative border-2 border-dashed border-blue-800 w-44 h-16 rounded-xl flex flex-col items-center justify-center text-center p-1 bg-slate-950/80 cursor-pointer hover:bg-slate-950 transition shrink-0 group" id="pro-sign-preview">
+                                        <i class="fa-solid fa-signature text-blue-400 group-hover:text-blue-500 transition text-sm"></i>
+                                        <span class="text-[8px] font-bold text-blue-400 uppercase tracking-wider mt-0.5">Attach Image Signature</span>
+                                        <input type="file" accept="image/*" required class="absolute inset-0 opacity-0 cursor-pointer" onchange="previewImageFile(this, 'pro-sign-preview')">
+                                    </label>
+                                    <span class="text-[9px] font-bold text-blue-400 uppercase tracking-wider mt-1 sm:mr-2">Candidate's Signature</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-black py-4 rounded-xl shadow-lg text-xs uppercase tracking-widest transition">
+                                Submit Professional Form Registration <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </section>
 
-    <section id="audience" class="py-16 bg-slate-50 border-t border-slate-200 rounded-3xl">
-        <div class="container mx-auto px-4">
+    <div class="bg-slate-50 py-16 border-t border-slate-200">
+        <section id="audience" class="container mx-auto px-4">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <h2 class="text-3xl font-black text-blue-900">Who We Help Succeed</h2>
-                <p class="text-slate-600 mt-2 text-sm">Tailored frameworks designed fluidly around your current professional or academic standing. <span class="text-blue-700 font-bold">Select your profile to start.</span></p>
+                <p class="text-slate-600 mt-2 text-sm">Tailored frameworks designed fluidly around your current professional or academic standing.</p>
             </div>
-
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
-                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
-                    <h4 class="font-bold text-base text-blue-900 flex items-center"><i class="fa-solid fa-user-gradient mr-2 text-amber-500 text-sm"></i> Undergraduates</h4>
+                <div onclick="scrollToEnroll('atswa')" class="clickable-card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                    <h4 class="font-bold text-base text-blue-900 flex items-center"><i class="fa-solid fa-graduation-cap mr-2 text-amber-500 text-sm"></i> Undergraduates</h4>
                     <p class="text-slate-600 leading-relaxed">Start early. Complete your ATS journey completely while in school to save massive amounts of professional time after graduation.</p>
                 </div>
-                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <div onclick="scrollToEnroll('professional')" class="clickable-card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
                     <h4 class="font-bold text-base text-blue-900 flex items-center"><i class="fa-solid fa-graduation-cap mr-2 text-amber-500 text-sm"></i> Fresh Graduates</h4>
                     <p class="text-slate-600 leading-relaxed">Transition systematically into premium chartered accounting operations regardless of your actual core degree discipline.</p>
                 </div>
-                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <div onclick="scrollToEnroll('professional')" class="clickable-card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
                     <h4 class="font-bold text-base text-blue-900 flex items-center"><i class="fa-solid fa-flag mr-2 text-amber-500 text-sm"></i> NYSC Corps Members</h4>
                     <p class="text-slate-600 leading-relaxed">Use your service year productively. Custom evening classes and dedicated slots are available for immediate deployment.</p>
                 </div>
-                <div onclick="scrollToEnroll('')" class="clickable-card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <div onclick="scrollToEnroll('professional')" class="clickable-card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
                     <h4 class="font-bold text-base text-blue-900 flex items-center"><i class="fa-solid fa-briefcase mr-2 text-amber-500 text-sm"></i> Bankers & Working Class</h4>
                     <p class="text-slate-600 leading-relaxed">Upgrade your long-term career trajectory without quitting your day job. Weekend classes combined with high-impact study materials.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <section id="testimonials" class="py-16 container mx-auto px-4 bg-slate-100 rounded-3xl">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <h2 class="text-3xl font-black text-blue-900">Success Stories</h2>
-            <p class="text-slate-600 mt-2 text-sm">Real execution breakthroughs from students who trusted our bulletproof exam methodology.</p>
-        </div>
-
-        <div class="space-y-8">
-            <div class="bg-gradient-to-br from-blue-900 via-blue-950 to-indigo-950 text-white rounded-3xl p-6 lg:p-8 shadow-xl border border-blue-800 grid md:grid-cols-5 gap-6 items-center">
-                <div class="md:col-span-2 rounded-2xl overflow-hidden shadow-md border-2 border-white/10 mx-auto w-full max-w-[240px]">
-                    <img src="IMG-20251209-WA0088.jpg" alt="PAG Graduate standing in front of the building" class="w-full h-64 object-cover object-top">
-                </div>
-                <div class="md:col-span-3 space-y-3">
-                    <div class="flex text-amber-400 space-x-1 text-xs">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <blockquote class="text-sm lg:text-base text-blue-50 italic leading-relaxed font-medium">
-                        "Balancing university coursework as a 200-level student while running professional exams wasn't easy, but PAG Tutors made it seamless. Thanks to their practical 'solving over reading' approach and intensive revision marathons, I cleared my entire ATS journey in a single sitting!"
-                    </blockquote>
-                    <div>
-                        <h4 class="font-extrabold text-amber-400 text-base">— Mubarak A.</h4>
-                        <p class="text-[11px] text-blue-200 font-semibold uppercase tracking-wider">ATS Graduate & ICAN Skills Candidate</p>
-                    </div>
-                </div>
+    <div class="bg-slate-100 py-16">
+        <section id="testimonials" class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-black text-blue-900">Success Stories</h2>
+                <p class="text-slate-600 mt-2 text-sm">Real execution breakthroughs from students who trusted our bulletproof exam methodology.</p>
             </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white text-slate-800 rounded-3xl p-6 shadow-md border border-slate-200 flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex text-amber-500 space-x-1 text-xs">
+            <div class="space-y-8">
+                <div class="bg-gradient-to-br from-blue-900 via-blue-950 to-indigo-950 text-white rounded-3xl p-6 lg:p-8 shadow-xl border border-blue-800 grid md:grid-cols-5 gap-6 items-center">
+                    <div class="md:col-span-2 rounded-2xl overflow-hidden shadow-md border-2 border-white/10 mx-auto w-full max-w-[240px]">
+                        <img src="IMG-20251209-WA0088.jpg" alt="PAG Graduate standing in front of the building" class="w-full h-64 object-cover object-top">
+                    </div>
+                    <div class="md:col-span-3 space-y-3">
+                        <div class="flex text-amber-400 space-x-1 text-xs">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <blockquote class="text-xs lg:text-sm text-slate-600 italic leading-relaxed">
-                            "The transition from academic theories to the ICAN Professional level is a huge hurdle. PAG Tutors breaks down complex Group Accounts and Corporate Reporting into simple mechanics. I cleared my Skills stage in one single sitting and am proudly chartered today!"
+                        <blockquote class="text-sm lg:text-base text-blue-50 italic leading-relaxed font-medium">
+                            "Balancing university coursework as a 200-level student while running professional exams wasn't easy, but PAG Tutors made it seamless. Thanks to their practical 'solving over reading' approach and intensive revision marathons, I cleared my entire ATS journey in a single sitting!"
                         </blockquote>
-                    </div>
-                    <div class="flex items-center space-x-3 pt-2 border-t border-slate-100">
-                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold text-xs">ACA</div>
                         <div>
-                            <h4 class="font-extrabold text-blue-900 text-xs">Adebayo K., ACA</h4>
-                            <p class="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Chartered Accountant</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white text-slate-800 rounded-3xl p-6 shadow-md border border-slate-200 flex flex-col justify-between space-y-4">
-                    <div class="space-y-2">
-                        <div class="flex text-amber-500 space-x-1 text-xs">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <blockquote class="text-xs lg:text-sm text-slate-600 italic leading-relaxed">
-                            "What sets this tuition house apart is their dedication to intensive past question drills. They don't just teach to pass; they train you to understand the actual workflow of financial systems. Best choice for any serious accounting professional in Ogbomoso."
-                        </blockquote>
-                    </div>
-                    <div class="flex items-center space-x-3 pt-2 border-t border-slate-100">
-                        <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-amber-700 font-bold text-xs">ACA</div>
-                        <div>
-                            <h4 class="font-extrabold text-blue-900 text-xs">Oluwaseun T., ACA</h4>
-                            <p class="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Senior Audit Associate</p>
+                            <h4 class="font-extrabold text-amber-400 text-base">— Mubarak A.</h4>
+                            <p class="text-[11px] text-blue-200 font-semibold uppercase tracking-wider">ATS Graduate & ICAN Skills Candidate</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <section id="enroll" class="py-16 bg-gradient-to-br from-slate-100 to-blue-50 border-t border-slate-200">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden grid md:grid-cols-5 border border-slate-200">
-                
-                <div class="md:col-span-2 bg-blue-900 text-white p-8 flex flex-col justify-between relative">
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-black tracking-tight">Enroll in 3 Steps</h3>
-                        <div class="space-y-4 text-xs">
-                            <p class="leading-tight"><span class="bg-amber-400 text-blue-950 font-bold w-5 h-5 inline-flex items-center justify-center rounded-full mr-2 text-[10px]">1</span> <strong>Choose your programme:</strong> Select your specific stage from ATS up to final Professional.</p>
-                            <p class="leading-tight"><span class="bg-amber-400 text-blue-950 font-bold w-5 h-5 inline-flex items-center justify-center rounded-full mr-2 text-[10px]">2</span> <strong>Pay structural tuition:</strong> Pay securely via standard bank transfer or at the head office desk.</p>
-                            <p class="leading-tight"><span class="bg-amber-400 text-blue-950 font-bold w-5 h-5 inline-flex items-center justify-center rounded-full mr-2 text-[10px]">3</span> <strong>Get instant access:</strong> Collect lecture timetables and matching curriculum materials schedules.</p>
-                        </div>
-                    </div>
-                    <div class="mt-8 pt-4 border-t border-blue-800 text-[11px]">
-                        Need instant validation guidance?<br>
-                        <a href="#" class="dynamic-wa-link text-amber-400 underline font-bold flex items-center mt-1 text-xs"><i class="fa-brands fa-whatsapp mr-1 text-base"></i> Chat Live With Admissions</a>
-                    </div>
-                </div>
-                
-                <form onsubmit="processRegistration(event)" class="md:col-span-3 p-6 lg:p-8 space-y-4">
-                    <h4 class="text-base font-bold text-slate-900 border-b border-slate-100 pb-2 uppercase tracking-wide"><i class="fa-solid fa-file-signature text-blue-700 mr-1"></i> Interactive Registry Portal</h4>
-                    <div class="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1">Full Name</label>
-                            <input type="text" id="student_name" required placeholder="e.g. Adebayo K." class="w-full text-xs px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1">WhatsApp Number</label>
-                            <input type="tel" id="student_phone" required placeholder="09060312125" class="w-full text-xs px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:outline-none">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1">Email Address</label>
-                        <input type="email" id="student_email" required placeholder="student@example.com" class="w-full text-xs px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-slate-700 uppercase tracking-wider mb-1">Target Programme Tier</label>
-                        <select id="student_track" class="w-full text-xs px-4 py-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-blue-600 focus:outline-none font-medium">
-                            <option selected>ICAN-ATS Programme (Parts I - III)</option>
-                            <option>ICAN Foundation Stage</option>
-                            <option>ICAN Skills Stage</option>
-                            <option>ICAN Professional Stage</option>
-                        </select>
-                    </div>
-                    <div class="pt-2">
-                        <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md transition text-xs uppercase tracking-wider">
-                            Submit Form Registration
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-16 container mx-auto px-4 bg-slate-50 rounded-3xl">
-        <div class="bg-white rounded-3xl p-6 lg:p-10 shadow-sm border border-slate-200 grid md:grid-cols-2 gap-10 items-center">
-            <div class="space-y-5">
-                <span class="text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-3 py-1 rounded-full">Our Location Hubs</span>
-                <h3 class="text-3xl font-black text-blue-900">Physical Footprints</h3>
-                <p class="text-slate-600 text-xs leading-relaxed">Visit our tuition center branches during scheduled administrative hours to check current course packs or process structural manual registrations.</p>
-                
-                <div class="space-y-4 border-t border-slate-100 pt-5 text-xs">
-                    <div class="flex items-start space-x-3">
-                        <div class="text-blue-700 mt-0.5"><i class="fa-solid fa-building text-base"></i></div>
-                        <div>
-                            <h4 class="font-extrabold text-slate-900 uppercase tracking-wide">Permanent Site Address</h4>
-                            <p class="text-slate-600 mt-0.5">PAG Tutors, OKE-AFFIN PAG BUILDING, OGBOMOSO, OYO STATE, NIGERIA.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="text-blue-700 mt-0.5"><i class="fa-solid fa-location-dot text-base"></i></div>
-                        <div>
-                            <h4 class="font-extrabold text-slate-900 uppercase tracking-wide">LAUTECH Campus Hub</h4>
-                            <p class="text-slate-600 mt-0.5">Behind 1500LT, Opp. Maracana, LAUTECH, Ogbomoso, Oyo State, Nigeria.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="text-amber-600 mt-0.5"><i class="fa-solid fa-clock text-base"></i></div>
-                        <div>
-                            <h4 class="font-extrabold text-slate-900 uppercase tracking-wide">Office Operations Hours</h4>
-                            <p class="text-slate-600 mt-0.5">Monday to Saturday: 8:00am – 6:00pm</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center py-10 space-y-4">
-                <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-xl mx-auto"><i class="fa-solid fa-headset"></i></div>
-                <h4 class="font-bold text-slate-900 text-base">Admissions & Instant Inquiries</h4>
-                <p class="text-xs text-slate-500 max-w-xs mx-auto">Get in touch directly with our support desk right now for immediate onboarding operations assistance.</p>
-                <div class="pt-2 flex flex-col space-y-2 max-w-xs mx-auto text-xs">
-                    <a href="#" class="dynamic-call-link flex items-center justify-center space-x-2 bg-white border border-slate-200 py-2.5 rounded-xl hover:bg-slate-100 font-bold text-slate-700"><i class="fa-solid fa-phone text-blue-600"></i> <span>Call Administration Office</span></a>
-                    <a href="#" class="dynamic-email-link flex items-center justify-center space-x-2 bg-white border border-slate-200 py-2.5 rounded-xl hover:bg-slate-100 font-bold text-slate-700"><i class="fa-solid fa-envelope text-blue-600"></i> <span class="dynamic-email-link">pagtutors2007@gmail.com</span></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-blue-950 text-slate-400 py-10 border-t border-blue-900 text-xs">
-        <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+    <footer id="contact" class="bg-slate-900 text-slate-400 pt-12 pb-6 border-t border-slate-800">
+        <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8 pb-8 border-b border-slate-800 text-sm">
             <div class="space-y-3">
-                <div class="flex items-center space-x-2">
-                    <img src="IMG-20251016-WA0210.jpg" alt="PAG Logo" class="h-8 w-8 rounded-full grayscale opacity-60">
-                    <span class="text-white font-bold tracking-wider">PAG TUTORS</span>
+                <h5 class="text-white font-bold text-base">PAG Tutors Hub</h5>
+                <p class="text-xs leading-relaxed">Premium accountancy coaching center in Ogbomoso. Empowering student pathways to successful global financial charting careers since 2006.</p>
+                <div class="flex space-x-4 pt-2 text-base text-slate-500">
+                    <a href="#" class="dynamic-wa-link hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="dynamic-call-link hover:text-blue-500"><i class="fa-solid fa-phone"></i></a>
+                    <a href="#" class="dynamic-email-link hover:text-amber-500"><i class="fa-solid fa-envelope"></i></a>
                 </div>
-                <p class="text-slate-400 text-[11px] leading-relaxed">Providing absolute exam focus, small class drills, and bulletproof exam methodologies in Oyo State since 2006.</p>
             </div>
-            <div>
-                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Quick Sections</h4>
-                <ul class="space-y-1.5 text-slate-400">
-                    <li><a href="#about" class="hover:text-white transition">Who We Are</a></li>
-                    <li><a href="#programs" class="hover:text-white transition">Academic Programs</a></li>
-                    <li><a href="#enroll" class="hover:text-white transition">Enroll Desk</a></li>
+            <div class="space-y-2">
+                <h5 class="text-white font-bold text-base">Locations & Site Footprints</h5>
+                <ul class="space-y-1.5 text-xs text-slate-400">
+                    <li><i class="fa-solid fa-building mr-1 text-amber-500"></i> Permanent Site: Oke-Affin PAG Building, Ogbomoso.</li>
+                    <li><i class="fa-solid fa-location-dot mr-1.5 text-amber-500"></i> LAUTECH Hub: Behind 1500LT, Opp. Maracana.</li>
                 </ul>
             </div>
-            <div>
-                <h4 class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Institutional Disclaimer</h4>
-                <p class="text-slate-500 text-[11px] leading-relaxed">Professional Aid Group (PAG) Tutors is an independent professional training house. ICAN and ATSWA are registered trademarks of the Institute of Chartered Accountants of Nigeria.</p>
-                <p class="text-slate-400 mt-4 font-medium">&copy; 2026 Professional Aid Group. All Rights Reserved.</p>
+            <div class="space-y-2">
+                <h5 class="text-white font-bold text-base">Contact Support</h5>
+                <p class="text-xs flex items-center"><i class="fa-solid fa-phone mr-2 text-amber-500"></i> <a href="#" class="dynamic-call-link hover:text-white">+234 906 031 2125</a></p>
+                <p class="text-xs flex items-center"><i class="fa-solid fa-envelope mr-2 text-amber-500"></i> <a href="#" class="dynamic-email-link hover:text-white"><span class="dynamic-email-link">Loading...</span></a></p>
             </div>
         </div>
+        <div class="container mx-auto px-4 pt-6 flex flex-col md:flex-row justify-between items-center text-[11px] text-slate-600">
+            <p>&copy; 2026 PAG Tutors. All rights reserved.</p>
+            <p class="mt-1 md:mt-0">Designed for Premium ICAN Training Performance.</p>
+        </div>
     </footer>
+
 </body>
 </html>

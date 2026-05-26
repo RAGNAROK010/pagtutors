@@ -31,6 +31,8 @@
     <script>
         const MY_WHATSAPP_NUMBER = "2349060312125";
         const MY_EMAIL_ADDRESS = "pagtutors2007@gmail.com";
+        // paste your deployed Google Apps Script Web App URL between the quotes below:
+        const GOOGLE_SCRIPT_WEB_APP_URL = "PASTE_YOUR_COPIED_WEB_APP_URL_HERE";
         
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelectorAll(".dynamic-wa-link").forEach(el => {
@@ -56,7 +58,7 @@
                     previewBox.style.backgroundSize = 'contain';
                     previewBox.style.backgroundRepeat = 'no-repeat';
                     previewBox.style.backgroundPosition = 'center';
-                    previewBox.innerHTML = ''; // Clear text icons
+                    previewBox.innerHTML = ''; 
                 }
                 reader.readAsDataURL(file);
             }
@@ -82,10 +84,16 @@
             }
         }
 
-        // Form Process Action - Formatted explicitly like a Google Form Response Summary
+        // Form Process Action - Excel Logging + WhatsApp Routing
         function sendRegistrationSheet(event, formBlockId, formTypeName) {
             event.preventDefault();
             const scope = document.getElementById(formBlockId);
+            const submitBtn = event.target.querySelector("button[type='submit']");
+            const originalBtnText = submitBtn.innerHTML;
+
+            // Change button to loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i> Saving to Database...`;
 
             // Personal Fields gathering
             const sur = scope.querySelector(".student_surname").value.trim().toUpperCase();
@@ -120,39 +128,84 @@
 
             if (chosenCourses.length === 0) {
                 alert("Please select at least one course paper from the grid selection sections below.");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
                 return;
             }
 
-            // Google Form Response Layout Style structure text message
-            let textStream = `📝 *GOOGLE FORM RESPONSE SUMMARY*%0A` +
-                             `*Form Title:* ${encodeURIComponent(formTypeName)}%0A` +
-                             `==================================%0A%0A` +
-                             `👤 *PERSONAL INFORMATION*%0A` +
-                             `• *Full Name:* ${encodeURIComponent(sur)}, ${encodeURIComponent(first)} ${encodeURIComponent(mid)}%0A` +
-                             `• *Date of Birth:* ${encodeURIComponent(dob)}%0A` +
-                             `• *Marital Status:* ${encodeURIComponent(marital)}%0A` +
-                             `• *Phone Number:* ${encodeURIComponent(phone)}%0A` +
-                             `• *Email Address:* ${encodeURIComponent(email)}%0A` +
-                             `• *Residential Address:* ${encodeURIComponent(address)}%0A` +
-                             `• *State of Origin:* ${encodeURIComponent(state)}%0A` +
-                             `• *L.G.A:* ${encodeURIComponent(lga)}%0A%0A` +
-                             `🎓 *ACADEMIC BACKGROUND*%0A` +
-                             `• *Primary School:* ${encodeURIComponent(pri)} (${encodeURIComponent(priGrad)})%0A` +
-                             `• *Secondary School:* ${encodeURIComponent(sec)} (${encodeURIComponent(secGrad)})%0A` +
-                             `• *Institution Attended:* ${encodeURIComponent(inst)}%0A` +
-                             `• *Course of Study:* ${encodeURIComponent(course)}%0A` +
-                             `• *Highest Qualification:* ${encodeURIComponent(qual)}%0A%0A` +
-                             `🛡️ *SPONSORSHIP & GUARDIAN DETAILS*%0A` +
-                             `• *Sponsor Name:* ${encodeURIComponent(sponsor)}%0A` +
-                             `• *Sponsor Phone:* ${encodeURIComponent(sponsorPhone)}%0A%0A` +
-                             `📚 *SELECTED COURSE PAPERS*%0A` +
-                             `• ${encodeURIComponent(chosenCourses.join("%0A• "))}%0A%0A` +
-                             `✍️ *AGREEMENT & SIGNATURE*%0A` +
-                             `• *Terms Condition:* Accepted & Agreed%0A` +
-                             `• *Status:* Complete Submission%0A%0A` +
-                             `_(Note: I am forwarding my uploaded Passport Photograph image and Digital Signature clip attachment directly inside this WhatsApp chat box)_`;
+            // Create Payload Object for Excel / Sheet Injection
+            const formDataPayload = {
+                formType: formTypeName,
+                surname: sur,
+                firstname: first,
+                midname: mid,
+                dob: dob,
+                marital: marital,
+                phone: phone,
+                email: email,
+                address: address,
+                state: state,
+                lga: lga,
+                primarySchool: pri,
+                primaryGrad: priGrad,
+                secondarySchool: sec,
+                secondaryGrad: secGrad,
+                course: course,
+                institution: inst,
+                qualification: qual,
+                sponsor: sponsor,
+                sponsorPhone: sponsorPhone,
+                chosenCourses: chosenCourses.join(", ")
+            };
 
-            window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${textStream}`, '_blank');
+            // Post Data silently to Google Sheet API Web App
+            fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+                method: "POST",
+                mode: "no-cors", // configuration required for cross-domain standalone webapps
+                cache: "no-cache",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formDataPayload)
+            })
+            .then(() => {
+                // Instantly proceed to WhatsApp notification dispatch
+                let textStream = `📝 *GOOGLE FORM RESPONSE SUMMARY*%0A` +
+                                 `*Form Title:* ${encodeURIComponent(formTypeName)}%0A` +
+                                 `==================================%0A%0A` +
+                                 `👤 *PERSONAL INFORMATION*%0A` +
+                                 `• *Full Name:* ${encodeURIComponent(sur)}, ${encodeURIComponent(first)} ${encodeURIComponent(mid)}%0A` +
+                                 `• *Date of Birth:* ${encodeURIComponent(dob)}%0A` +
+                                 `• *Marital Status:* ${encodeURIComponent(marital)}%0A` +
+                                 `• *Phone Number:* ${encodeURIComponent(phone)}%0A` +
+                                 `• *Email Address:* ${encodeURIComponent(email)}%0A` +
+                                 `• *Residential Address:* ${encodeURIComponent(address)}%0A` +
+                                 `• *State of Origin:* ${encodeURIComponent(state)}%0A` +
+                                 `• *L.G.A:* ${encodeURIComponent(lga)}%0A%0A` +
+                                 `🎓 *ACADEMIC BACKGROUND*%0A` +
+                                 `• *Primary School:* ${encodeURIComponent(pri)} (${encodeURIComponent(priGrad)})%0A` +
+                                 `• *Secondary School:* ${encodeURIComponent(sec)} (${encodeURIComponent(secGrad)})%0A` +
+                                 `• *Institution Attended:* ${encodeURIComponent(inst)}%0A` +
+                                 `• *Course of Study:* ${encodeURIComponent(course)}%0A` +
+                                 `• *Highest Qualification:* ${encodeURIComponent(qual)}%0A%0A` +
+                                 `🛡️ *SPONSORSHIP & GUARDIAN DETAILS*%0A` +
+                                 `• *Sponsor Name:* ${encodeURIComponent(sponsor)}%0A` +
+                                 `• *Sponsor Phone:* ${encodeURIComponent(sponsorPhone)}%0A%0A` +
+                                 `📚 *SELECTED COURSE PAPERS*%0A` +
+                                 `• ${encodeURIComponent(chosenCourses.join("%0A• "))}%0A%0A` +
+                                 `✍️ *STATUS:* Logged in Spreadsheet Document & Complete Submission ✅%0A%0A` +
+                                 `_(Note: Candidate is forwarding Passport image and Digital Signature attachment inside this chat box)_`;
+
+                window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${textStream}`, '_blank');
+                
+                // Reset submit button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Network error processing data storage submission. Please try again.");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            });
         }
 
         function scrollToEnroll(formType) {

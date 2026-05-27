@@ -920,7 +920,7 @@
         </div>
     </div>
 </section>
-      <section id="reviews" class="py-20 bg-slate-50 border-t border-slate-200">
+<section id="reviews" class="py-20 bg-slate-50 border-t border-slate-200">
     <div class="container mx-auto px-4 max-w-2xl">
         <div class="text-center mb-10">
             <h2 class="text-2xl font-black text-blue-900">Share Your Experience</h2>
@@ -958,7 +958,11 @@
         </div>
     </div>
 </section>
+
 <script>
+    // Link to your Google Script Web App
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzNo1xSbaMCr25xJl63Svapfx4wuKpaYR2XE6-9jGVtorTscmeKpEiSwHT4Gf7dql40/exec";
+
     function setRating(stars) {
         document.getElementById('selectedRating').value = stars;
         const starsUI = document.querySelectorAll('#star-rating i');
@@ -979,15 +983,13 @@
         submitBtn.disabled = true;
         submitBtn.innerText = "Submitting...";
 
-        // This uses the same GOOGLE_SCRIPT_WEB_APP_URL used in your registration forms
         const reviewPayload = {
-            formType: "STUDENT REVIEW",
             name: name,
             rating: rating + " Stars",
             experience: exp
         };
 
-        fetch(https://script.google.com/macros/s/AKfycbx0rxhDDNEf4NedVey4T2V3XG8maoOtw8CBEQFARlt8P0T-BWXgpKTcescoUdIDDk_I/exec, {
+        fetch(SCRIPT_URL, {
             method: "POST",
             mode: "no-cors",
             headers: { "Content-Type": "application/json" },

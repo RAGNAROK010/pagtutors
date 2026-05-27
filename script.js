@@ -1,5 +1,5 @@
 <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzNo1xSbaMCr25xJl63Svapfx4wuKpaYR2XE6-9jGVtorTscmeKpEiSwHT4Gf7dql40/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbym39CaJiyvFmVi1W-wBmtqM7rRmEC5uAG1WEQMPLWhbdijsJRqfoCUoMvDkfZyfUin/exec";
 
     async function fetchReviews() {
         try {

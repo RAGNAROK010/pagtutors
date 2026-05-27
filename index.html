@@ -32,7 +32,7 @@
         const MY_WHATSAPP_NUMBER = "2349060312125";
         const MY_EMAIL_ADDRESS = "pagtutors2007@gmail.com";
         // paste your deployed Google Apps Script Web App URL between the quotes below:
-        const GOOGLE_SCRIPT_WEB_APP_URL = "PASTE_YOUR_COPIED_WEB_APP_URL_HERE";
+        const GOOGLE_SCRIPT_WEB_APP_URL = "https://ragnarok010.github.io/pagtutors/";
         
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelectorAll(".dynamic-wa-link").forEach(el => {
@@ -919,7 +919,94 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section><section id="reviews" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="container mx-auto px-4 max-w-2xl">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl font-black text-blue-900">Share Your Experience</h2>
+            <p class="text-slate-600 text-sm mt-2">Your feedback helps us maintain our high standard of tutoring.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100">
+            <form id="reviewForm" onsubmit="submitReview(event)" class="space-y-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Your Full Name</label>
+                    <input type="text" id="reviewerName" required class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" placeholder="e.g. Mubarak. A">
+                </div>
+
+                <div class="text-center">
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-3">Rate Your Experience</label>
+                    <div id="star-rating" class="flex justify-center space-x-2 text-2xl text-slate-300">
+                        <i class="fa-solid fa-star cursor-pointer hover:text-amber-400" onclick="setRating(1)"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:text-amber-400" onclick="setRating(2)"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:text-amber-400" onclick="setRating(3)"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:text-amber-400" onclick="setRating(4)"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:text-amber-400" onclick="setRating(5)"></i>
+                    </div>
+                    <input type="hidden" id="selectedRating" value="0">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Your Experience with PAG TUTORS</label>
+                    <textarea id="reviewerExp" required rows="4" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" placeholder="Tell us how we helped you..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 rounded-xl shadow-lg transition">
+                    Submit Review <i class="fa-solid fa-paper-plane ml-2"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    function setRating(stars) {
+        document.getElementById('selectedRating').value = stars;
+        const starsUI = document.querySelectorAll('#star-rating i');
+        starsUI.forEach((star, index) => {
+            star.style.color = index < stars ? '#F59E0B' : '#D1D5DB';
+        });
+    }
+
+    function submitReview(event) {
+        event.preventDefault();
+        const submitBtn = event.target.querySelector("button[type='submit']");
+        const name = document.getElementById('reviewerName').value;
+        const exp = document.getElementById('reviewerExp').value;
+        const rating = document.getElementById('selectedRating').value;
+
+        if (rating == 0) { alert("Please select a star rating!"); return; }
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Submitting...";
+
+        // This uses the same GOOGLE_SCRIPT_WEB_APP_URL used in your registration forms
+        const reviewPayload = {
+            formType: "STUDENT REVIEW",
+            name: name,
+            rating: rating + " Stars",
+            experience: exp
+        };
+
+        fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(reviewPayload)
+        })
+        .then(() => {
+            alert("Thank you! Your review has been submitted.");
+            document.getElementById('reviewForm').reset();
+            setRating(0);
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit Review";
+        })
+        .catch(err => {
+            alert("Error submitting. Please try again.");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit Review";
+        });
+    }
+</script>
     </div>
 
     <footer id="contact" class="bg-slate-900 text-slate-400 pt-12 pb-6 border-t border-slate-800">

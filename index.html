@@ -31,7 +31,6 @@
     <script>
         const MY_WHATSAPP_NUMBER = "2349060312125";
         const MY_EMAIL_ADDRESS = "pagtutors2007@gmail.com";
-        // paste your deployed Google Apps Script Web App URL between the quotes below:
         const GOOGLE_SCRIPT_WEB_APP_URL = "https://ragnarok010.github.io/pagtutors/";
         
         document.addEventListener("DOMContentLoaded", function() {
@@ -84,18 +83,18 @@
             }
         }
 
-        // Form Process Action - Excel Logging + WhatsApp Routing
+      
         function sendRegistrationSheet(event, formBlockId, formTypeName) {
             event.preventDefault();
             const scope = document.getElementById(formBlockId);
             const submitBtn = event.target.querySelector("button[type='submit']");
             const originalBtnText = submitBtn.innerHTML;
 
-            // Change button to loading state
+           
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i> Saving to Database...`;
 
-            // Personal Fields gathering
+           
             const sur = scope.querySelector(".student_surname").value.trim().toUpperCase();
             const first = scope.querySelector(".student_firstname").value.trim().toUpperCase();
             const mid = scope.querySelector(".student_midname").value.trim().toUpperCase();
@@ -107,7 +106,7 @@
             const state = scope.querySelector(".student_state").value.trim().toUpperCase();
             const lga = scope.querySelector(".student_lga").value.trim().toUpperCase();
 
-            // Education Fields
+          
             const pri = scope.querySelector(".student_primary").value.trim();
             const priGrad = scope.querySelector(".student_primary_grad").value.trim();
             const sec = scope.querySelector(".student_secondary").value.trim();
@@ -116,11 +115,11 @@
             const inst = scope.querySelector(".student_institution").value.trim();
             const qual = scope.querySelector(".student_qual").value.trim();
 
-            // Sponsor Details
+           
             const sponsor = scope.querySelector(".student_sponsor").value.trim();
             const sponsorPhone = scope.querySelector(".student_sponsor_phone").value.trim();
 
-            // Gather Checked Courses dynamically
+           
             let chosenCourses = [];
             scope.querySelectorAll(".course_checkbox:checked").forEach(box => {
                 chosenCourses.push(box.value);
@@ -133,7 +132,7 @@
                 return;
             }
 
-            // Create Payload Object for Excel / Sheet Injection
+          
             const formDataPayload = {
                 formType: formTypeName,
                 surname: sur,
@@ -158,7 +157,7 @@
                 chosenCourses: chosenCourses.join(", ")
             };
 
-            // Post Data silently to Google Sheet API Web App
+           
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
                 mode: "no-cors", 
@@ -167,7 +166,7 @@
                 body: JSON.stringify(formDataPayload)
             })
             .then(() => {
-                // Instantly proceed to WhatsApp notification dispatch
+               
                 let textStream = `📝 *GOOGLE FORM RESPONSE SUMMARY*%0A` +
                                  `*Form Title:* ${encodeURIComponent(formTypeName)}%0A` +
                                  `==================================%0A%0A` +
@@ -196,7 +195,7 @@
 
                 window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${textStream}`, '_blank');
                 
-                // Reset submit button state
+               
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnText;
             })
@@ -233,7 +232,8 @@
                 <a href="#about" class="hover:text-blue-700 transition">About Us</a>
                 <a href="#programs" class="hover:text-blue-700 transition">Programs</a>
                 <a href="#audience" class="hover:text-blue-700 transition">Target Groups</a>
-               <a href="TESTIMONIAL.html" class="hover:text-blue-700 transition">Testimonials</a> <a href="#contact" class="hover:text-blue-700 transition">Contact</a>
+                <a href="student.html" class="hover:text-blue-700 transition">Student Portal</a>
+                <a href="TESTIMONIAL.html" class="hover:text-blue-700 transition">Testimonials</a> <a href="#contact" class="hover:text-blue-700 transition">Contact</a>
             </nav>
             <a href="#enroll" class="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2.5 rounded-xl font-bold shadow-md hover:shadow-lg transition text-sm">
                 Enroll Now
@@ -388,7 +388,46 @@
             </div>
         </section>
     </div>
-
+<section id="timetable" class="py-16 bg-white"> 
+    <div class="container mx-auto px-4">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <h2 class="text-3xl font-black text-blue-900">Lecture Timetables</h2>
+            <p class="text-slate-600 mt-2 text-sm">Comprehensive multi-day layouts structured neatly across the entire weekend track.</p>
+        </div>
+        
+        <div class="w-full bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+            <h4 class="font-bold text-blue-900 mb-4 text-base flex items-center">
+                <i class="fa-solid fa-calendar-days mr-2 text-amber-500"></i> Friday to Sunday Lecture Slots
+            </h4>
+            <div class="overflow-x-auto text-xs">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                            <th class="p-3">Level Program</th>
+                            <th class="p-3">Fridays</th>
+                            <th class="p-3">Saturdays</th>
+                            <th class="p-3">Sundays</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-600 divide-y divide-slate-100">
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-900">ATS (Parts I - III)</td>
+                            <td class="p-3 text-blue-700 font-medium">4:30 PM - 6:30 PM</td>
+                            <td class="p-3">8:00 AM - 6:30 PM</td>
+                            <td class="p-3 text-amber-600 font-medium">2:00 PM - 6:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-slate-900">Foundation, Skills & Professional</td>
+                            <td class="p-3 text-blue-700 font-medium">4:30 PM - 6:30 PM</td>
+                            <td class="p-3">8:00 AM - 6:30 PM</td>
+                            <td class="p-3 text-emerald-700 font-medium">12:00 PM - 6:30 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
     <section id="enroll" class="py-20 bg-gradient-to-br from-indigo-950 via-slate-900 to-blue-950 border-t-4 border-amber-500 relative">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.08),transparent_50%)] pointer-events-none"></div>
         
@@ -928,10 +967,10 @@
         </div>
 
         <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100">
-            <form id="reviewForm" onsubmit="submitReview(event)" class="space-y-6">
+            <form action="https://formspree.io/f/xlgvvdzk " method="POST" class="space-y-6">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Your Full Name</label>
-                    <input type="text" id="reviewerName" required class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" placeholder="e.g. Mubarak. A">
+                    <input type="text" name="name" required class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" placeholder="e.g. Mubarak. A">
                 </div>
 
                 <div class="text-center">
@@ -943,12 +982,12 @@
                         <i class="fa-solid fa-star cursor-pointer hover:text-amber-400" onclick="setRating(4)"></i>
                         <i class="fa-solid fa-star cursor-pointer hover:text-amber-400" onclick="setRating(5)"></i>
                     </div>
-                    <input type="hidden" id="selectedRating" value="0">
+                    <input type="hidden" name="rating" id="selectedRating" value="0">
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Your Experience with PAG TUTORS</label>
-                    <textarea id="reviewerExp" required rows="4" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" placeholder="Tell us how we helped you..."></textarea>
+                    <textarea name="message" required rows="4" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" placeholder="Tell us how we helped you..."></textarea>
                 </div>
 
                 <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 rounded-xl shadow-lg transition">
@@ -960,9 +999,7 @@
 </section>
 
 <script>
-    // Link to your Google Script Web App
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzNo1xSbaMCr25xJl63Svapfx4wuKpaYR2XE6-9jGVtorTscmeKpEiSwHT4Gf7dql40/exec";
-
+    
     function setRating(stars) {
         document.getElementById('selectedRating').value = stars;
         const starsUI = document.querySelectorAll('#star-rating i');

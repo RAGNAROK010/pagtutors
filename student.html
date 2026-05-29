@@ -1,0 +1,114 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAG Tutors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head> 
+<section id="student-hub" class="py-24 bg-white">
+    <div class="container mx-auto px-4">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-black text-blue-900 mb-4">Student Learning </h2>
+            <p class="text-slate-500 text-lg max-w-lg mx-auto">Your gateway to official ICAN resources and exclusive PAG Tutors study materials.</p>
+        </div>
+        
+        <!-- Cards Grid -->
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            
+            <!-- 1. Official ICAN Portal -->
+            <div class="bg-white p-10 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-6">
+                    <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                    <img src="images.png" ...>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Official ICAN Learning Materials</h3>
+                <p class="text-slate-600 mb-8 leading-relaxed">Direct access to official ICAN study packs, syllabus, and examination guidance.</p>
+                <a href="https://www.icanig.org/ican/students" target="_blank" 
+                   class="inline-flex items-center justify-center w-full bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition-all duration-300">
+                    Visit ICAN Portal
+                </a>
+            </div>
+
+            <!-- 2. PAG Exclusive Materials -->
+            <div class="bg-blue-900 p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                <div class="w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center text-blue-900 mb-6">
+                    <i class="fa-solid fa-lock text-2xl"></i>
+                    <img src="IMG-20251016-WA0210.jpg" ...>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">PAG Exclusive Resources</h3>
+                <p class="text-blue-200 mb-8 leading-relaxed">Access our curated study packs, past questions, and specialized lecture notes.</p>
+                <button onclick="checkAccess()" 
+                        class="w-full bg-amber-500 text-blue-900 py-4 rounded-xl font-bold hover:bg-amber-400 transition-all duration-300 shadow-lg hover:scale-[1.02] active:scale-[0.98]">
+                    Enter Access Code
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<script>
+function checkAccess() {
+    const code = prompt("Enter your Student Access Code:");
+    
+    if (code === null || code === "") return;
+
+    // ATS Part 1: PAG_0001 to PAG_2500
+    else if (code >= "PAG_0001" && code <= "PAG_2500") {
+        window.open("YOUR_ATS1_LINK", "_blank");
+    }
+    // ATS Part 2: PAG_2501 to PAG_5000
+    else if (code >= "PAG_2501" && code <= "PAG_5000") {
+        window.open("YOUR_ATS2_LINK", "_blank");
+    }
+    // ATS Part 3: PAG_5001 to PAG_7000
+    else if (code >= "PAG_5001" && code <= "PAG_7000") {
+        window.open("YOUR_ATS3_LINK", "_blank");
+    }
+       // Foundation: PAG_7001 to PAG_8000
+    if (code >= "PAG_7001" && code <= "PAG_8000") {
+        window.open("YOUR_FOUNDATION_LINK", "_blank");
+    }
+    // Skills Level: PAG_8001 to PAG_9000
+    else if (code >= "PAG_8001" && code <= "PAG_9000") {
+        window.open("YOUR_SKILLS_LINK", "_blank");
+    }
+    // Professional Level: PAG_9001 to PAG_9999
+    else if (code >= "PAG_9001" && code <= "PAG_9999") {
+        window.open("YOUR_PROFESSIONAL_LINK", "_blank");
+    }
+    else {
+        alert("Invalid Access Code. Please check the code or contact PAG Tutors.");
+    }
+}
+</script>
+ <footer id="contact" class="bg-slate-900 text-slate-400 pt-12 pb-6 border-t border-slate-800">
+        <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8 pb-8 border-b border-slate-800 text-sm">
+            <div class="space-y-3">
+                <h5 class="text-white font-bold text-base">PAG Tutors Hub</h5>
+                <p class="text-xs leading-relaxed">Premium accountancy coaching center in Ogbomoso. Empowering student pathways to successful global financial charting careers since 2006.</p>
+                <div class="flex space-x-4 pt-2 text-base text-slate-500">
+                    <a href="https://wa.me/2349060312125" class="hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="tel:+2349060312125" class="hover:text-blue-500"><i class="fa-solid fa-phone"></i></a>
+                    <a href="mailto:pagtutors2007@gmail.com" class="hover:text-amber-500"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <h5 class="text-white font-bold text-base">Locations & Site Footprints</h5>
+                <ul class="space-y-1.5 text-xs text-slate-400">
+                    <li><i class="fa-solid fa-building mr-1 text-amber-500"></i> Permanent Site: Oke-Affin PAG Building, Ogbomoso.</li>
+                    <li><i class="fa-solid fa-location-dot mr-1.5 text-amber-500"></i> LAUTECH Hub: Behind 1500LT, Opp. Maracana.</li>
+                </ul>
+            </div>
+            <div class="space-y-2">
+                <h5 class="text-white font-bold text-base">Contact Support</h5>
+                <p class="text-xs flex items-center"><i class="fa-solid fa-phone mr-2 text-amber-500"></i> <a href="tel:+2349060312125" class="hover:text-white">+234 906 031 2125</a></p>
+                <p class="text-xs flex items-center"><i class="fa-solid fa-envelope mr-2 text-amber-500"></i> <a href="mailto:pagtutors2007@gmail.com" class="hover:text-white">pagtutors2007@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 pt-6 flex flex-col md:flex-row justify-between items-center text-[11px] text-slate-600">
+            <p>&copy; 2026 PAG Tutors. All rights reserved.</p>
+            <p class="mt-1 md:mt-0">Designed for Premium ICAN Training Performance.</p>
+        </div>
+    </footer>
+
+  

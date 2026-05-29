@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-<body>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success Stories | PAG Tutors</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</body>
+</head>
 <body class="bg-slate-50">
 
     <section id="testimonials" class="py-20">
@@ -35,17 +34,26 @@
                     </div>
                 </div>
             </div>
+   
+       <h1 class="py-20 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <h2 class="text-3xl font-black text-blue-900 text-center mb-12">Student Testimonials</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                <p class="text-amber-500 mb-2">★★★★★</p>
+                <p class="text-slate-600 italic mb-4">"PAG Tutors helped me pass my ICAN exams in one sitting. The lecturers are very professional!"</p>
+                <h4 class="font-bold text-blue-900">- Mubarak I.</h4>
+            </div>
 
-            <h3 class="text-2xl font-bold text-blue-900 text-center mb-8">Student Testimonials</h3>
-            <div id="all-reviews-feed" class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                    <div class="text-amber-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="text-slate-600 italic mb-4">"PAG Tutors helped me pass my ICAN exams in one sitting. The lecturers are very professional!"</p>
-                    <p class="font-bold text-blue-900">— Mubarak A.</p>
-                </div>
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                <p class="text-amber-500 mb-2">★★★★★</p>
+                <p class="text-slate-600 italic mb-4">"The best place for ICAN training in Ogbomoso. Very practical!"</p>
+                <h4 class="font-bold text-blue-900">- Aishat.I</h4>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
@@ -76,81 +84,15 @@
         </div>
     </section>
 
-   <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzNo1xSbaMCr25xJl63Svapfx4wuKpaYR2XE6-9jGVtorTscmeKpEiSwHT4Gf7dql40/exec";
-
-    function setRating(stars) {
-        document.getElementById('selectedRating').value = stars;
-        document.querySelectorAll('#star-rating i').forEach((star, index) => {
-            star.style.color = index < stars ? '#F59E0B' : '#D1D5DB';
-        });
-    }
-
-    function submitReview(event) {
-        event.preventDefault();
-        const submitBtn = event.target.querySelector("button[type='submit']");
-        const name = document.getElementById('reviewerName').value;
-        const exp = document.getElementById('reviewerExp').value;
-        const rating = document.getElementById('selectedRating').value;
-
-        if (rating == 0) { alert("Please select a star rating!"); return; }
-
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Submitting...";
-
-        const reviewPayload = {
-            name: name,
-            rating: rating + " Stars",
-            experience: exp
-        };
-
-        fetch(SCRIPT_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(reviewPayload)
-        })
-        .then(() => {
-            alert("Thank you! Your review has been submitted.");
-            location.reload(); // This refreshes the page to show your new review
-        })
-        .catch(err => {
-            alert("Error submitting. Please try again.");
-            submitBtn.disabled = false;
-            submitBtn.innerText = "Submit Review";
-        });
-    }
-
-    async function fetchReviews() {
-        try {
-            const response = await fetch(SCRIPT_URL);
-            const data = await response.json();
-            const feed = document.getElementById('all-reviews-feed');
-            if (data && data.length > 0) {
-                feed.innerHTML = "";
-                data.forEach(review => {
-                    feed.innerHTML += `
-                        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                            <div class="text-amber-400 mb-4 text-xs">${review.rating}</div>
-                            <p class="text-slate-600 italic mb-4">"${review.experience}"</p>
-                            <p class="font-bold text-blue-900">— ${review.name}</p>
-                        </div>`;
-                });
-            }
-        } catch (error) { console.error("Error loading reviews:", error); }
-    }
-
-    fetchReviews();
-</script>
-</body>
- <footer id="contact" class="bg-slate-900 text-slate-400 pt-12 pb-6 border-t border-slate-800">
+   <footer id="contact" class="bg-slate-900 text-slate-400 pt-12 pb-6 border-t border-slate-800">
         <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8 pb-8 border-b border-slate-800 text-sm">
             <div class="space-y-3">
                 <h5 class="text-white font-bold text-base">PAG Tutors Hub</h5>
                 <p class="text-xs leading-relaxed">Premium accountancy coaching center in Ogbomoso. Empowering student pathways to successful global financial charting careers since 2006.</p>
                 <div class="flex space-x-4 pt-2 text-base text-slate-500">
-                    <a href="#" class="dynamic-wa-link hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#" class="dynamic-call-link hover:text-blue-500"><i class="fa-solid fa-phone"></i></a>
-                    <a href="#" class="dynamic-email-link hover:text-amber-500"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://wa.me/2349060312125" class="hover:text-emerald-500"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="tel:+2349060312125" class="hover:text-blue-500"><i class="fa-solid fa-phone"></i></a>
+                    <a href="mailto:pagtutors2007@gmail.com" class="hover:text-amber-500"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
             <div class="space-y-2">
@@ -162,8 +104,8 @@
             </div>
             <div class="space-y-2">
                 <h5 class="text-white font-bold text-base">Contact Support</h5>
-                <p class="text-xs flex items-center"><i class="fa-solid fa-phone mr-2 text-amber-500"></i> <a href="#" class="dynamic-call-link hover:text-white">+234 906 031 2125</a></p>
-                <p class="text-xs flex items-center"><i class="fa-solid fa-envelope mr-2 text-amber-500"></i> <a href="#" class="dynamic-call-link hover:text-white"><span class="dynamic-email-link">Loading...</span></a></p>
+                <p class="text-xs flex items-center"><i class="fa-solid fa-phone mr-2 text-amber-500"></i> <a href="tel:+2349060312125" class="hover:text-white">+234 906 031 2125</a></p>
+                <p class="text-xs flex items-center"><i class="fa-solid fa-envelope mr-2 text-amber-500"></i> <a href="mailto:pagtutors2007@gmail.com" class="hover:text-white">pagtutors2007@gmail.com</a></p>
             </div>
         </div>
         <div class="container mx-auto px-4 pt-6 flex flex-col md:flex-row justify-between items-center text-[11px] text-slate-600">
@@ -171,6 +113,5 @@
             <p class="mt-1 md:mt-0">Designed for Premium ICAN Training Performance.</p>
         </div>
     </footer>
-
 </body>
 </html>

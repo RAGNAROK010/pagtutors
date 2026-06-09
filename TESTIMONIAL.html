@@ -5,27 +5,69 @@
         <i class="fa-solid fa-bell mr-2 animate-pulse"></i> Admissions Open: Accelerate Your Journey to Becoming a Chartered Accountant!
     </div>
 
-    <header class="sticky top-0 z-50 bg-white shadow-md border-b border-slate-100">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-3">
-                <img src="IMG-20251016-WA0210.jpg" alt="PAG Tutors Logo" class="h-14 w-14 object-contain rounded-full border border-blue-100 shadow-sm">
-                <div>
-                    <span class="text-xl font-extrabold text-blue-900 block leading-tight">PAG TUTORS</span>
-                    <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Ogbomoso's Trusted ICAN Tuition House</span>
-                </div>
-            </a>
-            <nav class="hidden md:flex space-x-6 lg:space-x-8 font-semibold text-slate-600 text-sm">
-                <a href="#about" class="hover:text-blue-700 transition">About Us</a>
-                <a href="#programs" class="hover:text-blue-700 transition">Programs</a>
-                <a href="#audience" class="hover:text-blue-700 transition">Target Groups</a>
-                <a href="student.html" class="hover:text-blue-700 transition">Student Portal</a>
-                <a href="TESTIMONIAL.html" class="hover:text-blue-700 transition">Testimonials</a> <a href="#contact" class="hover:text-blue-700 transition">Contact</a>
-            </nav>
-            <a href="#enroll" class="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2.5 rounded-xl font-bold shadow-md hover:shadow-lg transition text-sm">
+   <header class="sticky top-0 z-50 bg-white shadow-md border-b border-slate-100">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-3">
+            <img src="IMG-20251016-WA0210.jpg"
+                 alt="PAG Tutors Logo"
+                 class="h-12 w-12 object-contain rounded-full border border-blue-100 shadow-sm">
+
+            <div>
+                <span class="text-lg md:text-xl font-extrabold text-blue-900 block">
+                    PAG TUTORS
+                </span>
+                <span class="text-[10px] md:text-xs font-bold text-amber-600 uppercase tracking-wider">
+                    Trusted ICAN Tuition House
+                </span>
+            </div>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn"
+                class="md:hidden text-blue-900 text-2xl">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex space-x-6 lg:space-x-8 font-semibold text-slate-600 text-sm">
+            <a href="#about" class="hover:text-blue-700">About Us</a>
+            <a href="#programs" class="hover:text-blue-700">Programs</a>
+            <a href="#audience" class="hover:text-blue-700">Target Groups</a>
+            <a href="student.html" class="hover:text-blue-700">Student Portal</a>
+            <a href="TESTIMONIAL.html" class="hover:text-blue-700">Testimonials</a>
+            <a href="#contact" class="hover:text-blue-700">Contact</a>
+        </nav>
+
+        <!-- Desktop Button -->
+        <a href="#enroll"
+           class="hidden md:block bg-blue-700 hover:bg-blue-800 text-white px-5 py-2.5 rounded-xl font-bold">
+            Enroll Now
+        </a>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+         class="hidden md:hidden bg-white border-t border-slate-200">
+
+        <div class="flex flex-col p-4 space-y-4 font-semibold text-slate-700">
+
+            <a href="#about">About Us</a>
+            <a href="#programs">Programs</a>
+            <a href="#audience">Target Groups</a>
+            <a href="student.html">Student Portal</a>
+            <a href="TESTIMONIAL.html">Testimonials</a>
+            <a href="#contact">Contact</a>
+
+            <a href="#enroll"
+               class="bg-blue-700 text-white text-center py-3 rounded-xl font-bold">
                 Enroll Now
             </a>
+
         </div>
-    </header>
+    </div>
+</header>
 <body class="bg-slate-50">
      <section>
     <meta charset="UTF-8">

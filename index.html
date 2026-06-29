@@ -3,13 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAG Tutors | Best ICAN Tutorial Center In Ogbomoso LAUTECH</title>
-    <meta name="description" content="PAG Tutors is Ogbomoso's trusted ICAN tuition house since 2006. Premium professional coaching for ICAN ATS classes LAUTECH and ICAN Professional training Nigeria.">
-    <meta name="keywords" content="ICAN tuition Ogbomoso, ICAN ATS classes LAUTECH, ICAN Professional training Nigeria, PAG Tutors, accounting coaching Oyo State, best ICAN tuition house, ICAN for NYSC members, weekend ICAN classes">
     
+    <!-- Core SEO Meta Tags - Search Optimized & Compliant -->
+    <title>PAG Tutors | Best ICAN Tutorial Center In Ogbomoso LAUTECH</title>
+    <meta name="description" content="PAG Tutors offers private accounting tutorials in Ogbomoso since 2006. Quality preparatory classes for ICAN ATS candidates near LAUTECH and ICAN Professional exams.">
+    <meta name="keywords" content="ICAN tutorial center Ogbomoso, ICAN classes LAUTECH, ICAN tutorials Oyo State, PAG Tutors, accounting coaching Ogbomoso, best ICAN private tutorials, weekend accounting classes LAUTECH">
+    
+    <!-- AI & Search Engine Structured Data (Schema Markup) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "PAG Tutors",
+      "url": "https://pagtutors.com",
+      "logo": "https://pagtutors.com/logo.png", 
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Back of 1500LT, Opp University Stadium, LAUTECH",
+        "addressLocality": "Ogbomoso",
+        "addressRegion": "Oyo State",
+        "postalCode": "212102",
+        "addressCountry": "NG"
+      },
+      "telephone": "+2348036075275",
+      "description": "Premium private accounting tutorials and professional exam preparatory classes for ICAN ATS and Professional candidates in Ogbomoso."
+    }
+    </script>
+
+    <!-- Third-Party Assets -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .bg-pag-blue { background-color: #3B7DC4; }
@@ -26,6 +52,7 @@
             filter: brightness(1.05);
         }
     </style>
+</head>
 </head>
 <body class="bg-pag-blue text-slate-800">
     <div class="bg-amber-500 text-blue-950 text-center py-2 px-4 text-xs font-bold uppercase tracking-wider">
@@ -712,144 +739,152 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
     </section>
      <script>
-        const MY_WHATSAPP_NUMBER = "2349060312125";
-        const MY_EMAIL_ADDRESS = "pagtutors2007@gmail.com";
-        const GOOGLE_SCRIPT_WEB_APP_URL = "https://ragnarok010.github.io/pagtutors/";
-        
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll(".dynamic-wa-link").forEach(el => {
-                el.href = `https://wa.me/${MY_WHATSAPP_NUMBER}`;
-            });
-            document.querySelectorAll(".dynamic-call-link").forEach(el => {
-                el.href = `tel:+${MY_WHATSAPP_NUMBER}`;
-            });
-            document.querySelectorAll(".dynamic-email-link").forEach(el => {
-                el.href = `mailto:${MY_EMAIL_ADDRESS}`;
-                if(el.tagName === 'SPAN') el.textContent = MY_EMAIL_ADDRESS;
-            });
-        });
+const MY_WHATSAPP_NUMBER = "2349060312125";
+const MY_EMAIL_ADDRESS = "pagtutors2007@gmail.com";
+const GOOGLE_SCRIPT_WEB_APP_URL = "https://ragnarok010.github.io/pagtutors/";
 
-        function previewImageFile(inputElement, previewId) {
-            const file = inputElement.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const previewBox = document.getElementById(previewId);
-                    previewBox.style.backgroundImage = `url('${e.target.result}')`;
-                    previewBox.style.backgroundSize = 'contain';
-                    previewBox.style.backgroundRepeat = 'no-repeat';
-                    previewBox.style.backgroundPosition = 'center';
-                    previewBox.innerHTML = ''; 
-                }
-                reader.readAsDataURL(file);
-            }
-        }
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".dynamic-wa-link").forEach(el => {
+        el.href = `https://wa.me/${MY_WHATSAPP_NUMBER}`;
+    });
 
-        // Handles Switch Form Selection View Tabs
-        function setActiveFormTab(targetType) {
-            const atswaBtn = document.getElementById("tab-btn-atswa");
-            const proBtn = document.getElementById("tab-btn-professional");
-            const atswaSection = document.getElementById("form-block-atswa");
-            const proSection = document.getElementById("form-block-professional");
+    document.querySelectorAll(".dynamic-call-link").forEach(el => {
+        el.href = `tel:+${MY_WHATSAPP_NUMBER}`;
+    });
 
-            if(targetType === 'atswa') {
-                atswaBtn.className = "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm transition shadow-lg shadow-amber-500/20";
-                proBtn.className = "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm hover:text-white hover:bg-white/15 transition";
-                atswaSection.classList.remove("hidden");
-                proSection.classList.add("hidden");
-            } else {
-                proBtn.className = "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm transition shadow-lg shadow-amber-500/20";
-                atswaBtn.className = "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm hover:text-white hover:bg-white/15 transition";
-                proSection.classList.remove("hidden");
-                atswaSection.classList.add("hidden");
-            }
-        }
+    document.querySelectorAll(".dynamic-email-link").forEach(el => {
+        el.href = `mailto:${MY_EMAIL_ADDRESS}`;
+        if (el.tagName === 'SPAN') el.textContent = MY_EMAIL_ADDRESS;
+    });
+});
 
-      
-        function sendRegistrationSheet(event, formBlockId, formTypeName) {
-            event.preventDefault();
-            const scope = document.getElementById(formBlockId);
-            const submitBtn = event.target.querySelector("button[type='submit']");
-            const originalBtnText = submitBtn.innerHTML;
+function previewImageFile(inputElement, previewId) {
+    const file = inputElement.files[0];
+    if (!file) return;
 
-           
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i> Saving to Database...`;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const previewBox = document.getElementById(previewId);
+        previewBox.style.backgroundImage = `url('${e.target.result}')`;
+        previewBox.style.backgroundSize = 'contain';
+        previewBox.style.backgroundRepeat = 'no-repeat';
+        previewBox.style.backgroundPosition = 'center';
+        previewBox.innerHTML = '';
+    };
+    reader.readAsDataURL(file);
+}
 
-           
-            const sur = scope.querySelector(".student_surname").value.trim().toUpperCase();
-            const first = scope.querySelector(".student_firstname").value.trim().toUpperCase();
-            const mid = scope.querySelector(".student_midname").value.trim().toUpperCase();
-            const dob = scope.querySelector(".student_dob").value;
-            const marital = scope.querySelector(".student_marital").value;
-            const phone = scope.querySelector(".student_phone").value.trim();
-            const email = scope.querySelector(".student_email").value.trim();
-            const address = scope.querySelector(".student_address").value.trim();
-            const state = scope.querySelector(".student_state").value.trim().toUpperCase();
-            const lga = scope.querySelector(".student_lga").value.trim().toUpperCase();
+// SWITCH TABS
+function setActiveFormTab(targetType) {
+    const atswaBtn = document.getElementById("tab-btn-atswa");
+    const proBtn = document.getElementById("tab-btn-professional");
+    const atswaSection = document.getElementById("form-block-atswa");
+    const proSection = document.getElementById("form-block-professional");
 
-          
-            const pri = scope.querySelector(".student_primary").value.trim();
-            const priGrad = scope.querySelector(".student_primary_grad").value.trim();
-            const sec = scope.querySelector(".student_secondary").value.trim();
-            const secGrad = scope.querySelector(".student_secondary_grad").value.trim();
-            const course = scope.querySelector(".student_course").value.trim();
-            const inst = scope.querySelector(".student_institution").value.trim();
-            const qual = scope.querySelector(".student_qual").value.trim();
+    if (targetType === 'atswa') {
+        atswaBtn.className = "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm shadow-lg";
+        proBtn.className = "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm";
+        atswaSection.classList.remove("hidden");
+        proSection.classList.add("hidden");
+    } else {
+        proBtn.className = "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm shadow-lg";
+        atswaBtn.className = "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm";
+        proSection.classList.remove("hidden");
+        atswaSection.classList.add("hidden");
+    }
+}
 
-           
-            const sponsor = scope.querySelector(".student_sponsor").value.trim();
-            const sponsorPhone = scope.querySelector(".student_sponsor_phone").value.trim();
+// 🔥 FIXED FORM SUBMISSION (IMPORTANT PART)
+function sendRegistrationSheet(event, formBlockId, formTypeName) {
+    event.preventDefault();
 
-           
-            let chosenCourses = [];
-            scope.querySelectorAll(".course_checkbox:checked").forEach(box => {
-                chosenCourses.push(box.value);
-            });
+    const scope = document.getElementById(formBlockId);
+    const submitBtn = event.target.querySelector("button[type='submit']");
+    const originalBtnText = submitBtn.innerHTML;
 
-            if (chosenCourses.length === 0) {
-                alert("Please select at least one course paper from the grid selection sections below.");
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-                return;
-            }
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i> Sending...`;
 
-          
-            const formDataPayload = {
-                formType: formTypeName,
-                surname: sur,
-                firstname: first,
-                midname: mid,
-                dob: dob,
-                marital: marital,
-                phone: phone,
-                email: email,
-                address: address,
-                state: state,
-                lga: lga,
-                primarySchool: pri,
-                primaryGrad: priGrad,
-                secondarySchool: sec,
-                secondaryGrad: secGrad,
-                course: course,
-                institution: inst,
-                qualification: qual,
-                sponsor: sponsor,
-                sponsorPhone: sponsorPhone,
-                chosenCourses: chosenCourses.join(", ")
-            };
+    // PERSONAL DATA
+    const sur = scope.querySelector(".student_surname").value.trim().toUpperCase();
+    const first = scope.querySelector(".student_firstname").value.trim().toUpperCase();
+    const mid = scope.querySelector(".student_midname").value.trim().toUpperCase();
+    const dob = scope.querySelector(".student_dob").value;
+    const marital = scope.querySelector(".student_marital").value;
+    const phone = scope.querySelector(".student_phone").value.trim();
+    const email = scope.querySelector(".student_email").value.trim();
+    const address = scope.querySelector(".student_address").value.trim();
+    const state = scope.querySelector(".student_state").value.trim().toUpperCase();
+    const lga = scope.querySelector(".student_lga").value.trim().toUpperCase();
 
-           
-            fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-                method: "POST",
-                mode: "no-cors", 
-                cache: "no-cache",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formDataPayload)
-            })
-            .then(() => {
-               
- let textStream = `📝 *GOOGLE FORM RESPONSE SUMMARY*%0A` +
+    // ACADEMIC
+    const pri = scope.querySelector(".student_primary").value.trim();
+    const priGrad = scope.querySelector(".student_primary_grad").value.trim();
+    const sec = scope.querySelector(".student_secondary").value.trim();
+    const secGrad = scope.querySelector(".student_secondary_grad").value.trim();
+    const course = scope.querySelector(".student_course").value.trim();
+    const inst = scope.querySelector(".student_institution").value.trim();
+
+    // NOTE: ATSWA uses "student_course", Professional uses "student_qual"
+    const qualEl = scope.querySelector(".student_qual") || scope.querySelector(".student_course");
+    const qual = qualEl ? qualEl.value.trim() : "";
+
+    // SPONSOR
+    const sponsor = scope.querySelector(".student_sponsor").value.trim();
+    const sponsorPhone = scope.querySelector(".student_sponsor_phone").value.trim();
+
+    // 🔥 FIXED CHECKBOX COLLECTION (THIS WAS YOUR ISSUE)
+    const chosenCourses = Array.from(
+        scope.querySelectorAll("input.course_checkbox:checked")
+    ).map(cb => cb.value);
+
+    if (chosenCourses.length === 0) {
+        alert("Please select at least one course.");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+        return;
+    }
+
+    const formDataPayload = {
+        formType: formTypeName,
+        surname: sur,
+        firstname: first,
+        midname: mid,
+        dob,
+        marital,
+        phone,
+        email,
+        address,
+        state,
+        lga,
+        primarySchool: pri,
+        primaryGrad: priGrad,
+        secondarySchool: sec,
+        secondaryGrad: secGrad,
+        course,
+        institution: inst,
+        qualification: qual,
+        sponsor,
+        sponsorPhone,
+        chosenCourses: chosenCourses.join(", ")
+    };
+
+    console.log("COURSES:", chosenCourses);
+    console.log("PAYLOAD:", formDataPayload);
+
+    // Send (WhatsApp flow)
+    fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(formDataPayload)
+    }).then(() => {const chosenCourses = [...scope.querySelectorAll("input.course_checkbox")]
+    .filter(cb => cb.checked)
+    .map(cb => cb.value);
+
+  // 1. Double-check your form extraction at the top of your script to make sure
+// 'qual' is pulling from the correct column index so it stops repeating 'course'!
+
+let textStream = `📝 *GOOGLE FORM RESPONSE SUMMARY*%0A` +
                  `*Form Title:* ${encodeURIComponent(formTypeName)}%0A` +
                  `==================================%0A%0A` +
                  `👤 *PERSONAL INFORMATION*%0A` +
@@ -875,29 +910,26 @@ document.addEventListener("DOMContentLoaded", function () {
                  `📚 *SELECTED COURSES*%0A` +
                  chosenCourses.map(c => `• ${encodeURIComponent(c)}`).join("%0A") + `%0A%0A` +
                  
-                 `*STATUS:* SUBMITTED SUCCESSFULLY ✅`;                                `_(Note: Candidate is forwarding Passport image and Digital Signature attachment inside this chat box)_`;
+                 `*STATUS:* SUBMITTED SUCCESSFULLY ✅`;
+        window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${textStream}`, '_blank');
 
-                window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${textStream}`, '_blank');
-                
-               
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-            })
-            .catch(err => {
-                console.error(err);
-                alert("Network error processing data storage submission. Please try again.");
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-            });
-        }
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Submission error. Try again.");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    });
+}
 
-        function scrollToEnroll(formType) {
-            document.getElementById("enroll").scrollIntoView({ behavior: "smooth" });
-            if (formType) {
-                setActiveFormTab(formType);
-            }
-        }
-    </script>
+// SCROLL
+function scrollToEnroll(formType) {
+    document.getElementById("enroll").scrollIntoView({ behavior: "smooth" });
+    if (formType) setActiveFormTab(formType);
+}
+</script>
     <section class="py-20 bg-white border-b border-slate-200">
         <div class="container mx-auto px-4 max-w-5xl">
             

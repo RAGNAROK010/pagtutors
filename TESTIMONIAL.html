@@ -31,7 +31,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-    <body class="bg-slate-50 text-slate-800">
+<body class="bg-slate-50 text-slate-800">
 
     <!-- Top Announcement Bar -->
     <div class="bg-amber-500 text-blue-950 text-center py-2 px-4 text-xs font-bold uppercase tracking-wider">
@@ -93,7 +93,7 @@
     <!-- Main Content Area -->
     <main>
         
-        <!-- SIGNATURE BLUE & SHARP SQUARE HERO SECTION -->
+       <!-- SIGNATURE BLUE & SHARP SQUARE HERO SECTION -->
         <section class="relative bg-blue-950 text-white overflow-hidden py-16 lg:py-20 border-b-4 border-amber-500 rounded-none">
             <div class="container mx-auto px-4 max-w-5xl relative z-10 text-center">
                 
@@ -108,7 +108,7 @@
                         <span class="text-amber-400">July 2026 AAT Inductees!</span>
                     </h1>
                     
-                    <!-- Long-Form Tribute Message (Faculty Removed) -->
+                    <!-- Long-Form Tribute Message -->
                     <div class="space-y-4 text-blue-100 text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl mx-auto font-normal text-center">
                         <p>
                             Professional excellence is built entirely on personal intention, tireless commitment, and structured execution. Today, the management and the entire student body at <span class="text-amber-400 font-bold">PAG Tutors</span> celebrate the remarkable accounting talents who have successfully conquered the professional path.
@@ -122,28 +122,28 @@
                     </div>
                 </div>
 
-                <!-- Picture Presentation Box - Deep Blue Theme, Completely Square Layout -->
+                <!-- FIXED PICTURE PRESENTATION BOX: Fully Stacked, Zero Text Overlap -->
                 <div class="relative max-w-4xl mx-auto rounded-none">
-                    <!-- Sharp-Edge Signature Blue Box -->
+                    <!-- Sharp-Edge Signature Blue Border Frame -->
                     <div class="bg-blue-900 border-2 border-blue-800 p-2 sm:p-4 shadow-2xl rounded-none">
-                        <div class="relative bg-blue-950 border border-blue-700 rounded-none">
+                        <div class="relative bg-blue-950 border border-blue-700 rounded-none overflow-hidden">
                             
-                            <!-- Wide Aspect Block forcing image horizontal preservation with NO side clipping -->
-                            <div class="w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-video overflow-hidden relative rounded-none">
-                                <img src="IMG-20260709-WA0048.jpg" 
+                            <!-- Image Container: No forced aspect ratios, uses natural h-auto to show the full height -->
+                            <div class="relative w-full block bg-black">
+                                <img src="Screenshot_20260709-124050.jpg" 
                                      alt="PAG Tutors July 2026 Inductees Complete Group View" 
-                                     class="absolute inset-0 w-full h-full object-cover object-[center_37%] transition-transform duration-500 rounded-none">
+                                     class="w-full h-auto block object-contain mx-auto rounded-none">
+
+                                <!-- Sharp Corner Badge (Moved to fit cleanly over the photo top) -->
+                                <div class="absolute top-0 left-0 bg-blue-700 text-white font-black text-[9px] sm:text-[10px] tracking-widest uppercase py-1.5 px-3 border-r border-b border-blue-600 rounded-none z-20">
+                                    ICAN-AATWA COHORT
+                                </div>
                             </div>
 
-                            <!-- Sharp Corner Label Sticker -->
-                            <div class="absolute top-0 left-0 bg-blue-700 text-white font-black text-[10px] tracking-widest uppercase py-2 px-4 border-r border-b border-blue-600 rounded-none">
-                                ICAN-AATWA COHORT
-                            </div>
-
-                            <!-- Structural Bottom Anchor text -->
-                            <div class="absolute bottom-0 inset-x-0 bg-blue-950/95 border-t border-blue-800 p-4 text-center rounded-none">
+                            <!-- Structural Caption Block: Safely stacked completely UNDER the photo -->
+                            <div class="w-full bg-blue-950 border-t border-slate-800 p-4 text-center block relative z-10">
                                 <h3 class="text-amber-400 font-black text-sm sm:text-base tracking-widest uppercase">
-                                    JULY 2026 INDUCTEES — FULL COMPLEMENT
+                                    JULY 2026 INDUCTEES 
                                 </h3>
                                 <p class="text-blue-200 text-[10px] sm:text-xs uppercase tracking-widest font-bold mt-1">
                                     Empowering Professional Journeys Since Day One
@@ -156,7 +156,6 @@
 
             </div>
         </section>
-
         <!-- Success Stories Section -->
         <section id="testimonials" class="py-20">
             <div class="container mx-auto px-4">

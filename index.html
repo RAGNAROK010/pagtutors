@@ -1697,20 +1697,49 @@
       const GOOGLE_SCRIPT_WEB_APP_URL =
         "https://ragnarok010.github.io/pagtutors/";
 
-      document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".dynamic-wa-link").forEach((el) => {
-          el.href = `https://wa.me/${MY_WHATSAPP_NUMBER}`;
-        });
+     document.addEventListener("DOMContentLoaded", function () {
+  // =========================
+  // MOBILE NAVIGATION
+  // =========================
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
 
-        document.querySelectorAll(".dynamic-call-link").forEach((el) => {
-          el.href = `tel:+${MY_WHATSAPP_NUMBER}`;
-        });
+  mobileMenuBtn.addEventListener("click", function () {
+    mobileMenu.classList.toggle("hidden");
+  });
 
-        document.querySelectorAll(".dynamic-email-link").forEach((el) => {
-          el.href = `mailto:${MY_EMAIL_ADDRESS}`;
-          if (el.tagName === "SPAN") el.textContent = MY_EMAIL_ADDRESS;
-        });
-      });
+  // Close menu when a navigation link is clicked
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", function () {
+      mobileMenu.classList.add("hidden");
+    });
+  });
+
+  // =========================
+  // WHATSAPP LINKS
+  // =========================
+  document.querySelectorAll(".dynamic-wa-link").forEach((el) => {
+    el.href = `https://wa.me/${MY_WHATSAPP_NUMBER}`;
+  });
+
+  // =========================
+  // PHONE LINKS
+  // =========================
+  document.querySelectorAll(".dynamic-call-link").forEach((el) => {
+    el.href = `tel:+${MY_WHATSAPP_NUMBER}`;
+  });
+
+  // =========================
+  // EMAIL LINKS
+  // =========================
+  document.querySelectorAll(".dynamic-email-link").forEach((el) => {
+    el.href = `mailto:${MY_EMAIL_ADDRESS}`;
+
+    if (el.tagName === "SPAN") {
+      el.textContent = MY_EMAIL_ADDRESS;
+    }
+  });
+});
 
       function previewImageFile(inputElement, previewId) {
         const file = inputElement.files[0];

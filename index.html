@@ -46,13 +46,13 @@
         "logo": "https://pagtutors.com/logo.png",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Back of 1500LT, Opp University Stadium, LAUTECH",
+          "streetAddress": "Beside University Guest House, Opposite Wazo Market, Oke-Afin",
           "addressLocality": "Ogbomoso",
           "addressRegion": "Oyo State",
           "postalCode": "212102",
           "addressCountry": "NG"
         },
-        "telephone": "+2348036075275",
+        "telephone": "+2349060312125",
         "description": "Premium private accounting tutorials and professional exam preparatory classes for ICAN ATS and Professional candidates in Ogbomoso."
       }
     </script>
@@ -64,7 +64,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
 
@@ -95,6 +95,20 @@
           0 8px 8px -5px rgba(0, 0, 0, 0.1);
         filter: brightness(1.05);
       }
+
+      /* Ticker Slide Animation */
+      @keyframes slideText {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+      }
+      .animate-ticker {
+        display: inline-block;
+        white-space: nowrap;
+        animation: slideText 25s linear infinite;
+      }
+      .animate-ticker:hover {
+        animation-play-state: paused;
+      }
     </style>
     <link
       rel="icon"
@@ -102,16 +116,30 @@
       href="IMG-20251016-WA0210-removebg-preview.png"
     />
   </head>
-  <body class="bg-pag-blue text-slate-800">
+  <body class="bg-pag-blue text-slate-800 relative">
+    
+    <!-- ANNOUNCEMENT NEWS SLIDER BAR -->
     <div
-      class="bg-amber-500 text-blue-950 text-center py-2 px-4 text-xs font-bold uppercase tracking-wider"
+      class="bg-amber-500 text-blue-950 overflow-hidden py-2.5 px-4 text-xs font-extrabold uppercase tracking-wider shadow-md border-b border-amber-600"
     >
-      <i class="fa-solid fa-bell mr-2 animate-pulse"></i> Admissions Open:
-      Accelerate Your Journey to Becoming a Chartered Accountant!
+      <div class="container mx-auto flex items-center">
+        <span class="bg-blue-950 text-amber-400 px-2.5 py-1 rounded-md text-[10px] tracking-widest font-black shrink-0 mr-3 flex items-center shadow-sm">
+          <i class="fa-solid fa-bullhorn mr-1.5 animate-bounce"></i> LATEST NEWS
+        </span>
+        <div class="overflow-hidden w-full relative">
+          <div class="animate-ticker flex space-x-12 items-center text-xs font-bold text-slate-900">
+            <span class="inline-flex items-center"><i class="fa-solid fa-trophy text-blue-900 mr-2"></i> ATSWA September 2026 Results are officially OUT!</span>
+            <span class="inline-flex items-center"><i class="fa-solid fa-user-plus text-blue-900 mr-2"></i> Registration for March & May 2027 Diet candidates HAS STARTED!</span>
+            <span class="inline-flex items-center"><i class="fa-solid fa-calendar-check text-blue-900 mr-2"></i> Intensive preparatory classes start soon across all hubs!</span>
+            <span class="inline-flex items-center"><i class="fa-solid fa-shield-halved text-blue-900 mr-2"></i> Join Ogbomoso's premier chartered accounting tuition house today!</span>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- MAIN HEADER NAV -->
     <header
-      class="sticky top-0 z-50 bg-white shadow-md border-b border-slate-100"
+      class="sticky top-0 z-40 bg-white shadow-md border-b border-slate-100"
     >
       <div
         class="container mx-auto px-4 py-3 flex justify-between items-center"
@@ -141,7 +169,7 @@
           class="hidden md:flex space-x-6 lg:space-x-8 font-semibold text-slate-600 text-sm"
         >
           <a href="index.html" class="hover:text-blue-700 transition">Home</a>
-          <!-- <a href="index.html#about" class="hover:text-blue-700 transition">About Us</a> -->
+          <a href="#news-highlights" class="hover:text-blue-700 transition">News & Updates</a>
           <a href="index.html#programs" class="hover:text-blue-700 transition"
             >Programs</a
           >
@@ -180,7 +208,7 @@
       >
         <div class="flex flex-col p-4 space-y-4 font-semibold text-slate-700">
           <a href="index.html" class="hover:text-blue-700 transition">Home</a>
-          <!-- <a href="index.html#about" class="hover:text-blue-700">About Us</a> -->
+          <a href="#news-highlights" class="hover:text-blue-700">News & Updates</a>
           <a href="index.html#programs" class="hover:text-blue-700">Programs</a>
           <a href="index.html#audience" class="hover:text-blue-700"
             >Target Groups</a
@@ -198,6 +226,8 @@
         </div>
       </div>
     </header>
+
+    <!-- HERO SECTION -->
     <section class="relative text-white py-16 lg:py-24 overflow-hidden">
       <div
         class="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10"
@@ -218,8 +248,7 @@
           <p class="text-base text-blue-100 max-w-xl leading-relaxed">
             Ogbomoso’s Trusted ICAN Tuition House Since 2006. Providing premium
             professional coaching for ICAN-ATS & ICAN Professional Examinations.
-            Join hundreds of students, graduates, NYSC members, and working
-            professionals who passed with us.
+            Registration for March & May 2027 Diets is officially OPEN!
           </p>
           <div class="flex flex-wrap gap-4 pt-2">
             <a
@@ -228,12 +257,12 @@
             >
               Enroll Now
             </a>
-            <a
-              href="#programs"
-              class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold px-6 py-3.5 rounded-xl transition text-sm"
+            <button
+              onclick="openNoticeModal()"
+              class="bg-blue-900/80 hover:bg-blue-900 text-amber-300 border border-amber-400/40 font-bold px-6 py-3.5 rounded-xl shadow-md transition text-sm flex items-center"
             >
-              View Courses
-            </a>
+              <i class="fa-solid fa-bell mr-2"></i> Latest Announcements
+            </button>
             <a
               href="#"
               class="dynamic-wa-link bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl transition text-sm flex items-center"
@@ -274,6 +303,66 @@
         </div>
       </div>
     </section>
+
+    <!-- NEWS CARDS SECTION -->
+    <section id="news-highlights" class="py-12 bg-slate-900 border-y border-slate-800 text-white">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
+          <div>
+            <span class="text-amber-400 text-xs font-black uppercase tracking-widest bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+              IMPORTANT NOTICES
+            </span>
+            <h2 class="text-2xl lg:text-3xl font-black mt-2 text-white">Current Academic Bulletins</h2>
+          </div>
+          <button onclick="openNoticeModal()" class="mt-4 md:mt-0 text-xs font-bold text-amber-400 hover:text-amber-300 underline underline-offset-4 flex items-center">
+            View Modal Popup Details <i class="fa-solid fa-arrow-up-right-from-square ml-1.5"></i>
+          </button>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-6 relative hover:border-amber-500/50 transition">
+            <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase px-2.5 py-1 rounded-md w-fit mb-3">
+              RESULTS RELEASED
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">ATSWA September 2026 Results Out</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              All candidates who sat for the September 2026 ATSWA examinations can now check their results. Contact the admin desk for verification.
+            </p>
+            <button onclick="openNoticeModal()" class="text-xs font-bold text-amber-400 hover:underline flex items-center">
+              Read Full Notice <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+            </button>
+          </div>
+
+          <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-6 relative hover:border-amber-500/50 transition">
+            <div class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase px-2.5 py-1 rounded-md w-fit mb-3">
+              ADMISSIONS OPEN
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Registration: March & May 2027</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Registration has officially commenced for the March 2027 ATSWA and May 2027 ICAN Professional examination diets. Reserve your slot early.
+            </p>
+            <button onclick="openNoticeModal()" class="text-xs font-bold text-amber-400 hover:underline flex items-center">
+              Read Full Notice <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+            </button>
+          </div>
+
+          <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-6 relative hover:border-amber-500/50 transition">
+            <div class="bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase px-2.5 py-1 rounded-md w-fit mb-3">
+              LECTURE SCHEDULE
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">New Diet Classes Starting Soon</h3>
+            <p class="text-xs text-slate-300 leading-relaxed mb-4">
+              Physical classes for all streams are starting shortly at both our Main Center in Oke-Affin and our LAUTECH Campus Hub.
+            </p>
+            <button onclick="openNoticeModal()" class="text-xs font-bold text-amber-400 hover:underline flex items-center">
+              Read Full Notice <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES SECTION -->
     <div class="bg-slate-100 py-16 border-b border-slate-200">
       <section id="programs" class="container mx-auto px-4">
         <div class="text-center max-w-2xl mx-auto mb-12">
@@ -416,6 +505,8 @@
         </div>
       </section>
     </div>
+
+    <!-- TIMETABLE SECTION -->
     <section id="timetable" class="py-16 bg-white">
       <div class="container mx-auto px-4">
         <div class="text-center max-w-2xl mx-auto mb-10">
@@ -476,6 +567,8 @@
         </div>
       </div>
     </section>
+
+    <!-- REGISTRATION SYSTEM -->
     <section
       id="enroll"
       class="py-20 bg-gradient-to-br from-indigo-950 via-slate-900 to-blue-950 border-t-4 border-amber-500 relative"
@@ -522,6 +615,7 @@
           </button>
         </div>
 
+        <!-- ATSWA FORM -->
         <div
           id="form-block-atswa"
           class="bg-white/[0.03] backdrop-blur-xl rounded-3xl p-6 lg:p-10 shadow-2xl border border-white/10 text-slate-100 transition duration-500"
@@ -818,7 +912,7 @@
                   <input
                     type="text"
                     required
-                    class="student_course w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition"
+                    class="student_qual w-full border border-white/10 rounded-xl px-4 py-3 text-xs focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none font-medium bg-black/30 text-white placeholder-slate-600 transition"
                     placeholder="e.g. OND / SSCE"
                   />
                 </div>
@@ -1092,6 +1186,7 @@
           </form>
         </div>
 
+        <!-- PROFESSIONAL STAGE FORM -->
         <div
           id="form-block-professional"
           class="bg-white/[0.03] backdrop-blur-xl rounded-3xl p-6 lg:p-10 shadow-2xl border border-white/10 text-slate-100 transition duration-500 hidden"
@@ -1691,265 +1786,8 @@
         </div>
       </div>
     </section>
-    <script>
-      const MY_WHATSAPP_NUMBER = "2349060312125";
-      const MY_EMAIL_ADDRESS = "pagtutors2007@gmail.com";
-      const GOOGLE_SCRIPT_WEB_APP_URL =
-        "https://ragnarok010.github.io/pagtutors/";
 
-     document.addEventListener("DOMContentLoaded", function () {
-  // =========================
-  // MOBILE NAVIGATION
-  // =========================
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-
-  mobileMenuBtn.addEventListener("click", function () {
-    mobileMenu.classList.toggle("hidden");
-  });
-
-  // Close menu when a navigation link is clicked
-  mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", function () {
-      mobileMenu.classList.add("hidden");
-    });
-  });
-
-  // =========================
-  // WHATSAPP LINKS
-  // =========================
-  document.querySelectorAll(".dynamic-wa-link").forEach((el) => {
-    el.href = `https://wa.me/${MY_WHATSAPP_NUMBER}`;
-  });
-
-  // =========================
-  // PHONE LINKS
-  // =========================
-  document.querySelectorAll(".dynamic-call-link").forEach((el) => {
-    el.href = `tel:+${MY_WHATSAPP_NUMBER}`;
-  });
-
-  // =========================
-  // EMAIL LINKS
-  // =========================
-  document.querySelectorAll(".dynamic-email-link").forEach((el) => {
-    el.href = `mailto:${MY_EMAIL_ADDRESS}`;
-
-    if (el.tagName === "SPAN") {
-      el.textContent = MY_EMAIL_ADDRESS;
-    }
-  });
-});
-
-      function previewImageFile(inputElement, previewId) {
-        const file = inputElement.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const previewBox = document.getElementById(previewId);
-          previewBox.style.backgroundImage = `url('${e.target.result}')`;
-          previewBox.style.backgroundSize = "contain";
-          previewBox.style.backgroundRepeat = "no-repeat";
-          previewBox.style.backgroundPosition = "center";
-          previewBox.innerHTML = "";
-        };
-        reader.readAsDataURL(file);
-      }
-
-      // SWITCH TABS
-      function setActiveFormTab(targetType) {
-        const atswaBtn = document.getElementById("tab-btn-atswa");
-        const proBtn = document.getElementById("tab-btn-professional");
-        const atswaSection = document.getElementById("form-block-atswa");
-        const proSection = document.getElementById("form-block-professional");
-
-        if (targetType === "atswa") {
-          atswaBtn.className =
-            "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm shadow-lg";
-          proBtn.className =
-            "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm";
-          atswaSection.classList.remove("hidden");
-          proSection.classList.add("hidden");
-        } else {
-          proBtn.className =
-            "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm shadow-lg";
-          atswaBtn.className =
-            "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm";
-          proSection.classList.remove("hidden");
-          atswaSection.classList.add("hidden");
-        }
-      }
-
-      // 🔥 FIXED FORM SUBMISSION (IMPORTANT PART)
-      function sendRegistrationSheet(event, formBlockId, formTypeName) {
-        event.preventDefault();
-
-        const scope = document.getElementById(formBlockId);
-        const submitBtn = event.target.querySelector("button[type='submit']");
-        const originalBtnText = submitBtn.innerHTML;
-
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i> Sending...`;
-
-        // PERSONAL DATA
-        const sur = scope
-          .querySelector(".student_surname")
-          .value.trim()
-          .toUpperCase();
-        const first = scope
-          .querySelector(".student_firstname")
-          .value.trim()
-          .toUpperCase();
-        const mid = scope
-          .querySelector(".student_midname")
-          .value.trim()
-          .toUpperCase();
-        const dob = scope.querySelector(".student_dob").value;
-        const marital = scope.querySelector(".student_marital").value;
-        const phone = scope.querySelector(".student_phone").value.trim();
-        const email = scope.querySelector(".student_email").value.trim();
-        const address = scope.querySelector(".student_address").value.trim();
-        const state = scope
-          .querySelector(".student_state")
-          .value.trim()
-          .toUpperCase();
-        const lga = scope
-          .querySelector(".student_lga")
-          .value.trim()
-          .toUpperCase();
-
-        // ACADEMIC
-        const pri = scope.querySelector(".student_primary").value.trim();
-        const priGrad = scope
-          .querySelector(".student_primary_grad")
-          .value.trim();
-        const sec = scope.querySelector(".student_secondary").value.trim();
-        const secGrad = scope
-          .querySelector(".student_secondary_grad")
-          .value.trim();
-        const course = scope.querySelector(".student_course").value.trim();
-        const inst = scope.querySelector(".student_institution").value.trim();
-
-        // NOTE: ATSWA uses "student_course", Professional uses "student_qual"
-        const qualEl =
-          scope.querySelector(".student_qual") ||
-          scope.querySelector(".student_course");
-        const qual = qualEl ? qualEl.value.trim() : "";
-
-        // SPONSOR
-        const sponsor = scope.querySelector(".student_sponsor").value.trim();
-        const sponsorPhone = scope
-          .querySelector(".student_sponsor_phone")
-          .value.trim();
-
-        // 🔥 FIXED CHECKBOX COLLECTION (THIS WAS YOUR ISSUE)
-        const chosenCourses = Array.from(
-          scope.querySelectorAll("input.course_checkbox:checked"),
-        ).map((cb) => cb.value);
-
-        if (chosenCourses.length === 0) {
-          alert("Please select at least one course.");
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalBtnText;
-          return;
-        }
-
-        const formDataPayload = {
-          formType: formTypeName,
-          surname: sur,
-          firstname: first,
-          midname: mid,
-          dob,
-          marital,
-          phone,
-          email,
-          address,
-          state,
-          lga,
-          primarySchool: pri,
-          primaryGrad: priGrad,
-          secondarySchool: sec,
-          secondaryGrad: secGrad,
-          course,
-          institution: inst,
-          qualification: qual,
-          sponsor,
-          sponsorPhone,
-          chosenCourses: chosenCourses.join(", "),
-        };
-
-        console.log("COURSES:", chosenCourses);
-        console.log("PAYLOAD:", formDataPayload);
-
-        // Send (WhatsApp flow)
-        fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-          method: "POST",
-          mode: "no-cors",
-          body: JSON.stringify(formDataPayload),
-        })
-          .then(() => {
-            const chosenCourses = [
-              ...scope.querySelectorAll("input.course_checkbox"),
-            ]
-              .filter((cb) => cb.checked)
-              .map((cb) => cb.value);
-
-            // 1. Double-check your form extraction at the top of your script to make sure
-            // 'qual' is pulling from the correct column index so it stops repeating 'course'!
-
-            let textStream =
-              `📝 *GOOGLE FORM RESPONSE SUMMARY*%0A` +
-              `*Form Title:* ${encodeURIComponent(formTypeName)}%0A` +
-              `==================================%0A%0A` +
-              `👤 *PERSONAL INFORMATION*%0A` +
-              `• *Full Name:* ${encodeURIComponent(sur)}, ${encodeURIComponent(first)} ${encodeURIComponent(mid)}%0A` +
-              `• *Date of Birth:* ${encodeURIComponent(dob)}%0A` +
-              `• *Marital Status:* ${encodeURIComponent(marital)}%0A` +
-              `• *Phone Number:* ${encodeURIComponent(phone)}%0A` +
-              `• *Email Address:* ${encodeURIComponent(email)}%0A` +
-              `• *Residential Address:* ${encodeURIComponent(address)}%0A` +
-              `• *State of Origin:* ${encodeURIComponent(state)}%0A` +
-              `• *L.G.A:* ${encodeURIComponent(lga)}%0A%0A` +
-              `🎓 *ACADEMIC BACKGROUND*%0A` +
-              `• *Primary School:* ${encodeURIComponent(pri)} (${encodeURIComponent(priGrad)})%0A` +
-              `• *Secondary School:* ${encodeURIComponent(sec)} (${encodeURIComponent(secGrad)})%0A` +
-              `• *Institution Attended:* ${encodeURIComponent(inst)}%0A` +
-              `• *Course of Study:* ${encodeURIComponent(course)}%0A` +
-              `• *Highest Qualification:* ${encodeURIComponent(qual)}%0A%0A` +
-              `🛡️ *SPONSOR DETAILS*%0A` +
-              `• *Name:* ${encodeURIComponent(sponsor)}%0A` +
-              `• *Phone:* ${encodeURIComponent(sponsorPhone)}%0A%0A` +
-              `📚 *SELECTED COURSES*%0A` +
-              chosenCourses
-                .map((c) => `• ${encodeURIComponent(c)}`)
-                .join("%0A") +
-              `%0A%0A` +
-              `*STATUS:* SUBMITTED SUCCESSFULLY ✅`;
-            window.open(
-              `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${textStream}`,
-              "_blank",
-            );
-
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
-          })
-          .catch((err) => {
-            console.error(err);
-            alert("Submission error. Try again.");
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
-          });
-      }
-
-      // SCROLL
-      function scrollToEnroll(formType) {
-        document
-          .getElementById("enroll")
-          .scrollIntoView({ behavior: "smooth" });
-        if (formType) setActiveFormTab(formType);
-      }
-    </script>
+    <!-- ALUMNI / INDUCTEES SECTION -->
     <section class="py-20 bg-white border-b border-slate-200">
       <div class="container mx-auto px-4 max-w-5xl">
         <div class="text-center max-w-xl mx-auto mb-12">
@@ -2118,6 +1956,8 @@
         </div>
       </div>
     </section>
+
+    <!-- TESTIMONIAL BUTTON LINK -->
     <div class="text-center py-10 bg-white">
       <a
         href="TESTIMONIAL.html"
@@ -2127,6 +1967,8 @@
         <i class="fa-solid fa-arrow-right ml-2"></i>
       </a>
     </div>
+
+    <!-- TARGET AUDIENCE SECTION -->
     <div class="bg-slate-50 py-16 border-t border-slate-200">
       <section id="audience" class="container mx-auto px-4">
         <div class="text-center max-w-2xl mx-auto mb-12">
@@ -2197,6 +2039,7 @@
       </section>
     </div>
 
+    <!-- SPOTLIGHT TESTIMONIAL & REVIEWS -->
     <div class="bg-slate-100 py-16">
       <section id="featured-success" class="py-16 bg-white">
         <div class="container mx-auto px-4">
@@ -2240,6 +2083,7 @@
           </div>
         </div>
       </section>
+
       <section id="reviews" class="py-20 bg-slate-50 border-t border-slate-200">
         <div class="container mx-auto px-4 max-w-2xl">
           <div class="text-center mb-10">
@@ -2255,7 +2099,7 @@
             class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100"
           >
             <form
-              action="https://formspree.io/f/xlgvvdzk "
+              action="https://formspree.io/f/xlgvvdzk"
               method="POST"
               class="space-y-6"
             >
@@ -2335,59 +2179,9 @@
           </div>
         </div>
       </section>
-
-      <script>
-        function setRating(stars) {
-          document.getElementById("selectedRating").value = stars;
-          const starsUI = document.querySelectorAll("#star-rating i");
-          starsUI.forEach((star, index) => {
-            star.style.color = index < stars ? "#F59E0B" : "#D1D5DB";
-          });
-        }
-
-        function submitReview(event) {
-          event.preventDefault();
-          const submitBtn = event.target.querySelector("button[type='submit']");
-          const name = document.getElementById("reviewerName").value;
-          const exp = document.getElementById("reviewerExp").value;
-          const rating = document.getElementById("selectedRating").value;
-
-          if (rating == 0) {
-            alert("Please select a star rating!");
-            return;
-          }
-
-          submitBtn.disabled = true;
-          submitBtn.innerText = "Submitting...";
-
-          const reviewPayload = {
-            name: name,
-            rating: rating + " Stars",
-            experience: exp,
-          };
-
-          fetch(SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(reviewPayload),
-          })
-            .then(() => {
-              alert("Thank you! Your review has been submitted.");
-              document.getElementById("reviewForm").reset();
-              setRating(0);
-              submitBtn.disabled = false;
-              submitBtn.innerText = "Submit Review";
-            })
-            .catch((err) => {
-              alert("Error submitting. Please try again.");
-              submitBtn.disabled = false;
-              submitBtn.innerText = "Submit Review";
-            });
-        }
-      </script>
     </div>
 
+    <!-- FOOTER WITH UPDATED ADDRESSES -->
     <footer
       id="contact"
       class="bg-slate-900 text-slate-400 pt-12 pb-6 border-t border-slate-800"
@@ -2413,21 +2207,21 @@
             ></a>
           </div>
         </div>
-        <div class="space-y-2">
-          <h5 class="text-white font-bold text-base">
-            Locations & Site Footprints
-          </h5>
-          <ul class="space-y-1.5 text-xs text-slate-400">
-            <li>
-              <i class="fa-solid fa-building mr-1 text-amber-500"></i> Permanent
-              Site: Oke-Affin PAG Building, Ogbomoso.
-            </li>
-            <li>
-              <i class="fa-solid fa-location-dot mr-1.5 text-amber-500"></i>
-              LAUTECH Hub: Behind 1500LT, Opp. Maracana.
-            </li>
-          </ul>
+
+        <div class="space-y-3">
+          <h5 class="text-white font-bold text-base">Lecture Locations & Hubs</h5>
+          <div class="space-y-2 text-xs text-slate-300">
+            <p class="leading-relaxed">
+              <strong class="text-amber-400 font-bold block"><i class="fa-solid fa-building-columns mr-1.5 text-amber-500"></i> Main Lecture Center (Accredited Hub):</strong>
+              Beside University Guest House, Opposite Wazo Market, Oke-Affin, Ogbomoso, Oyo State.
+            </p>
+            <p class="leading-relaxed">
+              <strong class="text-amber-400 font-bold block"><i class="fa-solid fa-location-dot mr-1.5 text-amber-500"></i> Campus Hub:</strong>
+              Behind 1500LT, Opposite Maracana, LAUTECH, Ogbomoso.
+            </p>
+          </div>
         </div>
+
         <div class="space-y-2">
           <h5 class="text-white font-bold text-base">Contact Support</h5>
           <p class="text-xs flex items-center">
@@ -2453,5 +2247,336 @@
         </p>
       </div>
     </footer>
+
+    <!-- ANNOUNCEMENT / MODAL POPUP -->
+    <div id="noticeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm hidden transition-opacity duration-300">
+      <div class="bg-slate-900 border border-amber-500/40 text-white rounded-3xl max-w-lg w-full p-6 lg:p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+        <!-- Close Button -->
+        <button onclick="closeNoticeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 rounded-full h-8 w-8 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+
+        <div class="flex items-center space-x-3 mb-4">
+          <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
+            <i class="fa-solid fa-bullhorn text-lg"></i>
+          </span>
+          <div>
+            <span class="text-[10px] font-black uppercase text-amber-400 tracking-widest block">OFFICIAL ANNOUNCEMENT</span>
+            <h3 class="text-xl font-black text-white">Latest ICAN & ATS WA Updates</h3>
+          </div>
+        </div>
+
+        <div class="space-y-4 text-xs leading-relaxed text-slate-200 border-y border-slate-800 py-4 my-2">
+          <div class="bg-emerald-500/10 border border-emerald-500/20 p-3.5 rounded-xl">
+            <h4 class="font-extrabold text-emerald-400 text-sm mb-1 flex items-center">
+              <i class="fa-solid fa-circle-check mr-2"></i> ATSWA September 2026 Results
+            </h4>
+            <p class="text-slate-300">
+              The ATSWA September 2026 examination results are officially OUT! All candidates are advised to verify their scorecards and get ready for stage progression.
+            </p>
+          </div>
+
+          <div class="bg-amber-500/10 border border-amber-500/20 p-3.5 rounded-xl">
+            <h4 class="font-extrabold text-amber-400 text-sm mb-1 flex items-center">
+              <i class="fa-solid fa-user-plus mr-2"></i> March & May 2027 Registration
+            </h4>
+            <p class="text-slate-300">
+              Registration of candidates for March 2027 ATSWA and May 2027 ICAN Professional Examinations has commenced. Early registration guarantees lecture seat allocations.
+            </p>
+          </div>
+
+          <div class="bg-blue-500/10 border border-blue-500/20 p-3.5 rounded-xl">
+            <h4 class="font-extrabold text-blue-400 text-sm mb-1 flex items-center">
+              <i class="fa-solid fa-chalkboard-user mr-2"></i> Classes Starting Soon
+            </h4>
+            <p class="text-slate-300">
+              Preparatory physical lectures begin soon across our Main Center (Oke-Affin) and Campus Hub (LAUTECH 1500LT).
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-3">
+          <a href="#enroll" onclick="closeNoticeModal()" class="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-3 rounded-xl text-center text-xs uppercase tracking-wider transition">
+            Proceed To Registration <i class="fa-solid fa-arrow-right ml-1.5"></i>
+          </a>
+          <button onclick="closeNoticeModal()" class="px-5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold py-3 rounded-xl text-center text-xs transition">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+      const MY_WHATSAPP_NUMBER = "2349060312125";
+      const MY_EMAIL_ADDRESS = "pagtutors2007@gmail.com";
+      const GOOGLE_SCRIPT_WEB_APP_URL =
+        "https://ragnarok010.github.io/pagtutors/";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // =========================
+        // MOBILE NAVIGATION
+        // =========================
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        mobileMenuBtn.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+
+        // =========================
+        // WHATSAPP LINKS
+        // =========================
+        document.querySelectorAll(".dynamic-wa-link").forEach((el) => {
+          el.href = `https://wa.me/${MY_WHATSAPP_NUMBER}`;
+        });
+
+        // =========================
+        // PHONE LINKS
+        // =========================
+        document.querySelectorAll(".dynamic-call-link").forEach((el) => {
+          el.href = `tel:+${MY_WHATSAPP_NUMBER}`;
+        });
+
+        // =========================
+        // EMAIL LINKS
+        // =========================
+        document.querySelectorAll(".dynamic-email-link").forEach((el) => {
+          el.href = `mailto:${MY_EMAIL_ADDRESS}`;
+
+          if (el.tagName === "SPAN") {
+            el.textContent = MY_EMAIL_ADDRESS;
+          }
+        });
+
+        // Trigger Notice Modal automatically after short delay
+        setTimeout(() => {
+          openNoticeModal();
+        }, 1200);
+      });
+
+      // MODAL FUNCTIONS
+      function openNoticeModal() {
+        const modal = document.getElementById("noticeModal");
+        modal.classList.remove("hidden");
+      }
+
+      function closeNoticeModal() {
+        const modal = document.getElementById("noticeModal");
+        modal.classList.add("hidden");
+      }
+
+      function previewImageFile(inputElement, previewId) {
+        const file = inputElement.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const previewBox = document.getElementById(previewId);
+          previewBox.style.backgroundImage = `url('${e.target.result}')`;
+          previewBox.style.backgroundSize = "contain";
+          previewBox.style.backgroundRepeat = "no-repeat";
+          previewBox.style.backgroundPosition = "center";
+          previewBox.innerHTML = "";
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // SWITCH TABS
+      function setActiveFormTab(targetType) {
+        const atswaBtn = document.getElementById("tab-btn-atswa");
+        const proBtn = document.getElementById("tab-btn-professional");
+        const atswaSection = document.getElementById("form-block-atswa");
+        const proSection = document.getElementById("form-block-professional");
+
+        if (targetType === "atswa") {
+          atswaBtn.className =
+            "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm shadow-lg shadow-amber-500/20";
+          proBtn.className =
+            "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm hover:text-white hover:bg-white/15 transition";
+          atswaSection.classList.remove("hidden");
+          proSection.classList.add("hidden");
+        } else {
+          proBtn.className =
+            "flex-1 bg-amber-500 text-slate-950 text-center py-4 rounded-xl font-black text-sm shadow-lg shadow-amber-500/20";
+          atswaBtn.className =
+            "flex-1 bg-white/10 text-white/70 text-center py-4 rounded-xl font-bold text-sm hover:text-white hover:bg-white/15 transition";
+          proSection.classList.remove("hidden");
+          atswaSection.classList.add("hidden");
+        }
+      }
+
+      // FORM SUBMISSION
+      function sendRegistrationSheet(event, formBlockId, formTypeName) {
+        event.preventDefault();
+
+        const scope = document.getElementById(formBlockId);
+        const submitBtn = event.target.querySelector("button[type='submit']");
+        const originalBtnText = submitBtn.innerHTML;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i> Sending...`;
+
+        // PERSONAL DATA
+        const sur = scope
+          .querySelector(".student_surname")
+          .value.trim()
+          .toUpperCase();
+        const first = scope
+          .querySelector(".student_firstname")
+          .value.trim()
+          .toUpperCase();
+        const mid = scope
+          .querySelector(".student_midname")
+          .value.trim()
+          .toUpperCase();
+        const dob = scope.querySelector(".student_dob").value;
+        const marital = scope.querySelector(".student_marital").value;
+        const phone = scope.querySelector(".student_phone").value.trim();
+        const email = scope.querySelector(".student_email").value.trim();
+        const address = scope.querySelector(".student_address").value.trim();
+        const state = scope
+          .querySelector(".student_state")
+          .value.trim()
+          .toUpperCase();
+        const lga = scope
+          .querySelector(".student_lga")
+          .value.trim()
+          .toUpperCase();
+
+        // ACADEMIC
+        const pri = scope.querySelector(".student_primary").value.trim();
+        const priGrad = scope
+          .querySelector(".student_primary_grad")
+          .value.trim();
+        const sec = scope.querySelector(".student_secondary").value.trim();
+        const secGrad = scope
+          .querySelector(".student_secondary_grad")
+          .value.trim();
+        const course = scope.querySelector(".student_course").value.trim();
+        const inst = scope.querySelector(".student_institution").value.trim();
+
+        const qualEl =
+          scope.querySelector(".student_qual") ||
+          scope.querySelector(".student_course");
+        const qual = qualEl ? qualEl.value.trim() : "";
+
+        // SPONSOR
+        const sponsor = scope.querySelector(".student_sponsor").value.trim();
+        const sponsorPhone = scope
+          .querySelector(".student_sponsor_phone")
+          .value.trim();
+
+        // CHECKBOX COLLECTION
+        const chosenCourses = Array.from(
+          scope.querySelectorAll("input.course_checkbox:checked"),
+        ).map((cb) => cb.value);
+
+        if (chosenCourses.length === 0) {
+          alert("Please select at least one course.");
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnText;
+          return;
+        }
+
+        const formDataPayload = {
+          formType: formTypeName,
+          surname: sur,
+          firstname: first,
+          midname: mid,
+          dob,
+          marital,
+          phone,
+          email,
+          address,
+          state,
+          lga,
+          primarySchool: pri,
+          primaryGrad: priGrad,
+          secondarySchool: sec,
+          secondaryGrad: secGrad,
+          course,
+          institution: inst,
+          qualification: qual,
+          sponsor,
+          sponsorPhone,
+          chosenCourses: chosenCourses.join(", "),
+        };
+
+        // Send (WhatsApp flow)
+        fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(formDataPayload),
+        })
+          .then(() => {
+            let textStream =
+              `📝 *GOOGLE FORM RESPONSE SUMMARY*%0A` +
+              `*Form Title:* ${encodeURIComponent(formTypeName)}%0A` +
+              `==================================%0A%0A` +
+              `👤 *PERSONAL INFORMATION*%0A` +
+              `• *Full Name:* ${encodeURIComponent(sur)}, ${encodeURIComponent(first)} ${encodeURIComponent(mid)}%0A` +
+              `• *Date of Birth:* ${encodeURIComponent(dob)}%0A` +
+              `• *Marital Status:* ${encodeURIComponent(marital)}%0A` +
+              `• *Phone Number:* ${encodeURIComponent(phone)}%0A` +
+              `• *Email Address:* ${encodeURIComponent(email)}%0A` +
+              `• *Residential Address:* ${encodeURIComponent(address)}%0A` +
+              `• *State of Origin:* ${encodeURIComponent(state)}%0A` +
+              `• *L.G.A:* ${encodeURIComponent(lga)}%0A%0A` +
+              `🎓 *ACADEMIC BACKGROUND*%0A` +
+              `• *Primary School:* ${encodeURIComponent(pri)} (${encodeURIComponent(priGrad)})%0A` +
+              `• *Secondary School:* ${encodeURIComponent(sec)} (${encodeURIComponent(secGrad)})%0A` +
+              `• *Institution Attended:* ${encodeURIComponent(inst)}%0A` +
+              `• *Course of Study:* ${encodeURIComponent(course)}%0A` +
+              `• *Highest Qualification:* ${encodeURIComponent(qual)}%0A%0A` +
+              `🛡️ *SPONSOR DETAILS*%0A` +
+              `• *Name:* ${encodeURIComponent(sponsor)}%0A` +
+              `• *Phone:* ${encodeURIComponent(sponsorPhone)}%0A%0A` +
+              `📚 *SELECTED COURSES*%0A` +
+              chosenCourses
+                .map((c) => `• ${encodeURIComponent(c)}`)
+                .join("%0A") +
+              `%0A%0A` +
+              `*STATUS:* SUBMITTED SUCCESSFULLY ✅`;
+
+            window.open(
+              `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${textStream}`,
+              "_blank",
+            );
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("Submission error. Try again.");
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+          });
+      }
+
+      // SCROLL
+      function scrollToEnroll(formType) {
+        document
+          .getElementById("enroll")
+          .scrollIntoView({ behavior: "smooth" });
+        if (formType) setActiveFormTab(formType);
+      }
+
+      // RATING
+      function setRating(stars) {
+        document.getElementById("selectedRating").value = stars;
+        const starsUI = document.querySelectorAll("#star-rating i");
+        starsUI.forEach((star, index) => {
+          star.style.color = index < stars ? "#F59E0B" : "#D1D5DB";
+        });
+      }
+    </script>
   </body>
 </html>
